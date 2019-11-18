@@ -16,15 +16,14 @@ class Player(Moving_Entity):
 
 class Monster(Moving_Entity):
 
-	def __init__(self):
-		pass
+	def __init__(self , health):
+		Moving_Entity.__init__(self , health )
 
 class Unmoving_entity:
 
 	def __init__(self):
 		pass
 
-
-unit = Player(10)
-unit.health_change(2)
-print(unit.health)
+class Obstacle:
+    	def __init__(self):
+			pass
