@@ -11,30 +11,22 @@ def init_grid_level(level):
 		return init_grid(15)
 
 def player_placement(grid):
-<<<<<<< HEAD
-	size=len(grid)
-	p=size//2
-	player = Player(10)
-	grid[p][p] = player
-	return player
-=======
 	p=GRID_SIZE//2
-	grid[p][p] = Player(10)
+	grid[p][p] = Player([p , p])
 	return grid
->>>>>>> entitty/engine
 
 def update(grid):
 	pass
 
 def move_entity(entity, direction):
 	pos = [entity.pos[0],entity.pos[1]]
-	if move == 'up':
+	if direction == 'up':
 		if pos[0]==0:
 			raise NameError('Move not possible')
 		else:
 			entity.pos[0] -= 1
 	elif move == 'down':
-		if pos[0] == GRID_SIZE-1:
+    		if pos[0] == GRID_SIZE-1:
 			raise NameError('Move not possible')
 		else:
     		entity.pos[0] += 1
