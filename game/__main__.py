@@ -1,5 +1,7 @@
 from game.engine import init_grid
-from game.graphics import create_window, load_images
+from game.graphics import create_window, load_images, display_map
+import pygame
+from pygame.locals import *
 
 GRID_SIZE = 15
 
