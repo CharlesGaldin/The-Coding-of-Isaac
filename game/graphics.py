@@ -11,7 +11,7 @@ def load_images():
 	images = {}
 	images['gumba'] = pygame.image.load("gumba.png").convert_alpha() #exemple
 	images['background'] = pygame.image.load("fond.jpeg").convert()
-	images['robot'] = pygame.image.load("robot.jpeg").convert()
+	#images['robot'] = pygame.image.load("robot.jpeg").convert()
 	return images
 
 
