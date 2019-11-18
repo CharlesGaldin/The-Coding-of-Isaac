@@ -2,7 +2,7 @@ class Moving_Entity:
     
 	def __init__(self , health , artwork):
 		self.health = health
-		#self.artwork = artwork
+		self.artwork = artwork
 	
 	def health_change(self , n):
     	# n is an integer
@@ -12,7 +12,7 @@ class Moving_Entity:
 class Player(Moving_Entity):
 
 	def __init__(self , health):
-		Moving_Entity.__init__(self , health , "assets/robot.png")
+		Moving_Entity.__init__(self , health , "robot")
 
 class Monster(Moving_Entity):
 
