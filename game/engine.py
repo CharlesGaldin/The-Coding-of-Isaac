@@ -11,17 +11,9 @@ def init_grid_level(level):
 		return init_grid(15)
 
 def player_placement(grid):
-<<<<<<< HEAD
-	size=len(grid)
-	p=size//2
-	player = Player(10)
-	grid[p][p] = player
-	return player
-=======
 	p=GRID_SIZE//2
 	grid[p][p] = Player(10)
 	return grid
->>>>>>> entitty/engine
 
 def update(grid):
 	pass
