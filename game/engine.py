@@ -1,10 +1,10 @@
 def init_grid(size):
 	grid = []
 	for i in range(size):
-		grid += [[]]
+		grid.append([])
 		j=0
 		while j < size:
-			grid[i] += [[None]]
+			grid[i].append(None)
 			j +=1
 	return grid
 

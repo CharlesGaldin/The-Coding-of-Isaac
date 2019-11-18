@@ -9,9 +9,8 @@ def load_images():
 	renvoie le dictionnaire
 	"""
 	images = {}
-	images['gumba'] = pygame.image.load("gumba.png").convert_alpha() #exemple
 	images['background'] = pygame.image.load("fond.jpeg").convert()
-	images['robot'] = pygame.image.load("robot.jpeg").convert_alpha()
+	images['robot'] = pygame.image.load("assets/robot.png").convert_alpha()
 	return images
 
 
@@ -36,7 +35,7 @@ def display_map(grid,window,tile_size,images):
 	for i in range(height):
 		for j in range(width):
 			if grid[i][j] != None:
-				window.blit(images[grid[i][j]],(j*tile_size,i*tile_size))
+				window.blit(images['robot'],(j*tile_size,i*tile_size))
 			#window.blit(images['gumba'],(j*tile_size,i*tile_size))
 
 
