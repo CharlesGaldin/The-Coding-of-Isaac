@@ -16,3 +16,6 @@ It has been developped in **Python**.
 
 Curently, there is nothing :)
 
+## Useful links
+
+Trello : https://trello.com/b/p6avnPuj/the-coding-of-isaac
