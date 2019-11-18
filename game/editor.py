@@ -1,7 +1,5 @@
 import tkinter as tk
 
-userCode = ""
-
 class EditorSetUp:
 	def __init__(self):
 		self.master = tk.Tk()
@@ -20,10 +18,14 @@ class EditorSetUp:
 		self.close_button = tk.Button(self.master, text="Close", command=self.master.quit)
 		self.close_button.pack()
 
+		self.userCode = ""
+
+		self.isSubmitted = False
+
 	def submit(self):
-		global userCode
-		userCode = self.text.get("1.0", tk.END)
-		print("Submited !")
+		self.userCode = self.text.get("1.0", tk.END)
+		self.isSubmitted = True
+		print("Submitted !")
 	
 	def run(self):
 		self.master.mainloop()
