@@ -1,7 +1,6 @@
 class Entity:
 
-	def __init__(self , position , health):
-		self.position = position
+	def __init__(self , health):
 		self.health = health
 
 class Player(Entity):
