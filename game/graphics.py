@@ -39,7 +39,7 @@ def display_map(grid,window,tile_size,images):
 		for j in range(width):
 			window.blit(images['ground'],(j*tile_size,i*tile_size))
 			if grid[i][j] != None:
-				window.blit(images[grid[i][j]],(j*tile_size,i*tile_size))
+				window.blit(images['robot'],(j*tile_size,i*tile_size))
 			#window.blit(images['gumba'],(j*tile_size,i*tile_size))
 
 

@@ -1,4 +1,4 @@
-from game.engine import init_grid
+from game.engine import init_grid, player_placement
 from game.graphics import create_window, load_images, display_map
 import pygame
 import pygame.locals
@@ -8,6 +8,7 @@ GRID_SIZE = 15
 class Game:
 	def __init__(self):
 		self.grid = init_grid(GRID_SIZE)
+		player_placement(self.grid)
 		self.window = create_window(self.grid, 30)
 		self.images = load_images()
 	
