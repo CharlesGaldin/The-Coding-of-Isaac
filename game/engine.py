@@ -2,7 +2,10 @@ def init_grid(size):
 	grid = []
 	for i in range(size):
 		grid += [[]]
-		grid[i] += [[None]]
+		j=0
+		while j < size:
+			grid[i] += [[None]]
+			j +=1
 	return grid
 
 def init_grid_level(level):
