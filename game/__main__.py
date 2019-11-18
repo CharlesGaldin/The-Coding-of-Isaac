@@ -1,14 +1,14 @@
 from game.engine import init_grid
 from game.graphics import create_window, load_images, display_map
 import pygame
-from pygame.locals import *
+import pygame.locals
 
 GRID_SIZE = 15
 
 class Game:
 	def __init__(self):
 		self.grid = init_grid(GRID_SIZE)
-		self.window = create_window(20,20,30)
+		self.window = create_window(GRID_SIZE, GRID_SIZE, 30)
 		self.images = load_images()
 	
 	def run(self):
@@ -18,7 +18,7 @@ class Game:
 			pygame.time.Clock().tick(60)
 			
 			for event in pygame.event.get():
-				if event.type == QUIT:
+				if event.type == pygame.locals.QUIT:
 					running = False
 			pygame.display.flip()
 
