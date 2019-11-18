@@ -33,7 +33,6 @@ def display_map(grid,window,tile_size,images):
 	images : dico qui contient les images
 	affiche le fond et tout ce qui se trouve dans la grille
 	"""
-	window.blit(images['background'],(-30,-30))
 	height = len(grid)
 	width = len(grid[0])
 	for i in range(height):
@@ -74,4 +73,4 @@ def run():
 				play = 0
 		pygame.display.flip()
 
-run()
+#run()
