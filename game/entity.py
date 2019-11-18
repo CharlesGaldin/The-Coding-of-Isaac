@@ -1,14 +1,17 @@
-class Entity:
+class Moving_Entity:
 
 	def __init__(self , health):
 		self.health = health
 
-class Player(Entity):
+class Player(Living_Entity):
 
 	def __init__(self):
 		pass
 
-class Monster(Entity):
+class Monster(Living_Entity):
 
 	def __init__(self):
 		pass
+
+class Unmoving_Entitty:
+	pass

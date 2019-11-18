@@ -1,4 +1,4 @@
-from game.engine import init_grid
+from engine import init_grid
 
 GRID_SIZE = 15
 
