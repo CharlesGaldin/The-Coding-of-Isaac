@@ -3,7 +3,7 @@ from game.entity import Player, Monster
 GRID_SIZE = 15
 
 def init_grid():
-    grid = [[None for i in range(GRID_SIZE)] for j in range(GRID_SIZE)]
+	grid = [[None for i in range(GRID_SIZE)] for j in range(GRID_SIZE)]
 	return grid
 
 def init_grid_level(level):
@@ -29,7 +29,7 @@ def move_entity(entity, direction):
     		if pos[0] == GRID_SIZE-1:
 			raise NameError('Move not possible')
 		else:
-    		entity.pos[0] += 1
+			entity.pos[0] += 1
 	elif move == 'left':
 		if pos[1]==0:
 			raise NameError('Move not possible')
@@ -37,7 +37,7 @@ def move_entity(entity, direction):
 			entity.pos[1] -= 1
 	elif move == 'right':
 		if pos[1]==GRID_SIZE-1:
-    		raise NameError('Move not possible')
+			raise NameError('Move not possible')
 		else:
 			entity.pos[1] += 1
 	else:
