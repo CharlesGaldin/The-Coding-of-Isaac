@@ -5,9 +5,9 @@ userCode = ""
 class EditorSetUp:
 	def __init__(self):
 		self.master = tk.Tk()
-		self.master.title("A simple GUI")
+		self.master.title("The Coding of Isaac")
 
-		self.label = tk.Label(self.master, text="This is our first GUI!")
+		self.label = tk.Label(self.master, text="Your IA:")
 		self.label.pack()
 
 		self.text = tk.Text(self.master)
