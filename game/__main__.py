@@ -3,6 +3,9 @@ from game.graphics import create_window, load_images, display_map
 import pygame
 import pygame.locals
 
+import threading
+from game.editor import EditorSetUp
+
 GRID_SIZE = 15
 
 class Game:
@@ -11,6 +14,12 @@ class Game:
 		self.player = player_placement(self.grid)
 		self.window = create_window(self.grid, 30)
 		self.images = load_images()
+		
+		def tkthread():
+			self.editor = EditorSetUp()
+			self.editor.run()
+		
+		threading.Thread(target=tkthread).start()
 	
 	def run(self):
 		running = True
@@ -22,6 +31,7 @@ class Game:
 				if event.type == pygame.locals.QUIT:
 					running = False
 			pygame.display.flip()
+		pygame.quit()
 
 
 if __name__ == "__main__":
