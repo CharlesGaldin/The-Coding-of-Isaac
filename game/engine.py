@@ -11,8 +11,9 @@ from game.entity import Player, Monster
 def player_placement(grid):
 	size=len(grid)
 	p=size//2
-	grid[p][p] = Player(10)
-	return grid
+	player = Player(10)
+	grid[p][p] = player
+	return player
 
 def update(grid):
 	pass

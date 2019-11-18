@@ -8,7 +8,7 @@ GRID_SIZE = 15
 class Game:
 	def __init__(self):
 		self.grid = init_grid(GRID_SIZE)
-		player_placement(self.grid)
+		self.player = player_placement(self.grid)
 		self.window = create_window(self.grid, 30)
 		self.images = load_images()
 	
