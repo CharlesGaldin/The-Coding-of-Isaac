@@ -11,7 +11,7 @@ def load_images():
 	images = {}
 	images['gumba'] = pygame.image.load("gumba.png").convert_alpha() #exemple
 	images['background'] = pygame.image.load("fond.jpeg").convert()
-	images['robot'] = pygame.image.load("robot.jpeg").convert()
+	images['robot'] = pygame.image.load("robot.jpeg").convert_alpha()
 	return images
 
 
@@ -35,9 +35,9 @@ def display_map(grid,window,tile_size,images):
 	width = len(grid[0])
 	for i in range(height):
 		for j in range(width):
-			#if grid[i][j] != None:
-				#window.blit(images[grid[i][j]],(j*tile_size,i*tile_size))
-			window.blit(images['gumba'],(j*tile_size,i*tile_size))
+			if grid[i][j] != None:
+				window.blit(images[grid[i][j]],(j*tile_size,i*tile_size))
+			#window.blit(images['gumba'],(j*tile_size,i*tile_size))
 
 
 	pygame.display.flip()
@@ -50,11 +50,17 @@ def display_map(grid,window,tile_size,images):
 
 ##ZONE DE TESTS
 def run():
+    ##HYPERPARAMETERS##
+	height = 20
+	width = 20
+	tile_size = 30
+	grid = [[None for i in range(width)] for j in range(height)]
+	###
 	play = 1
-	grid = [[None for i in range(20)] for j in range(20)]
 	grid[5][5] = 'robot'
-	window = create_window(grid,30)
-	display_map(grid,window,30,load_images())
+	window = create_window(grid,tile_size)
+	banque_images = load_images()
+	display_map(grid,window,30,banque_images)
 
 	while play:
 		pygame.time.Clock().tick(60) ##Tours de boucles max par seconde
