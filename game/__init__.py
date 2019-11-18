@@ -1,9 +1,10 @@
+from engine import init_grid
 
 GRID_SIZE = 15
 
 class Game:
 	def __init__(self):
-		self.grid = [[None]*GRID_SIZE for i in range(GRID_SIZE)]
+		self.grid = init_grid(GRID_SIZE)
 	
 	def run():
 		print("Hello, world!")
