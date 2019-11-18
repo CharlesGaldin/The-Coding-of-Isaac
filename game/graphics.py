@@ -10,9 +10,9 @@ def load_images():
 	"""
 	images = {}
 	#images['gumba'] = pygame.image.load("gumba.png").convert_alpha() #exemple
-	images['background'] = pygame.image.load("fond.jpeg").convert()
-	images['robot'] = pygame.image.load("robot.png").convert_alpha()
-	images['ground'] = pygame.image.load("ground.png").convert_alpha()
+	#images['background'] = pygame.image.load("fond.jpeg").convert()
+	images['robot'] = pygame.image.load("assets/robot.png").convert_alpha()
+	images['ground'] = pygame.image.load("assets/ground.png").convert_alpha()
 	return images
 
 
