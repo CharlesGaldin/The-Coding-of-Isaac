@@ -6,7 +6,7 @@ def init_grid_level(level):
 	if level == 1:
 		return init_grid(15)
 
-from entity import Player, Monster
+from game.entity import Player, Monster
 
 def player_placement(grid):
 	size=len(grid)
