@@ -12,7 +12,7 @@ def init_grid_level(level):
 
 def player_placement(grid):
 	p=GRID_SIZE//2
-	grid[p][p] = Player(10)
+	grid[p][p] = Player([p , p])
 	return grid
 
 def update(grid):
