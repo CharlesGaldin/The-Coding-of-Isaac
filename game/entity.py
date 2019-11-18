@@ -2,7 +2,7 @@ class Moving_Entity:
     
 	def __init__(self , health , artwork):
 		self.health = health
-		#self.artwork = artwork
+		self.artwork = artwork
 	
 	def health_change(self , n):
     	# n is an integer
