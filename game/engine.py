@@ -26,7 +26,7 @@ def move_entity(entity, direction):
 		else:
 			entity.pos[0] -= 1
 	elif move == 'down':
-    		if pos[0] == GRID_SIZE-1:
+		if pos[0] == GRID_SIZE-1:
 			raise NameError('Move not possible')
 		else:
 			entity.pos[0] += 1
