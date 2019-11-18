@@ -3,7 +3,10 @@ def init_grid(size):
     for i in range(size):
         grid += [[]]
         for j in range(size):
-            grid[i] += [[' ']]
+            grid[i] += [[None]]
     return grid
 
-print(init_grid(3))
+def init_grid_level(level):
+    if level == 1:
+        return init_grid(15)
+
