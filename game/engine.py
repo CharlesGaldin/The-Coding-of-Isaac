@@ -3,7 +3,7 @@ from game.entity import Player, Monster
 GRID_SIZE = 15
 
 def init_grid():
-    	grid = [[None for i in range(GRID_SIZE)] for j in range(GRID_SIZE)]
+    grid = [[None for i in range(GRID_SIZE)] for j in range(GRID_SIZE)]
 	return grid
 
 def init_grid_level(level):
