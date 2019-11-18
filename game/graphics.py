@@ -9,9 +9,10 @@ def load_images():
 	renvoie le dictionnaire
 	"""
 	images = {}
-	images['gumba'] = pygame.image.load("gumba.png").convert_alpha() #exemple
+	#images['gumba'] = pygame.image.load("gumba.png").convert_alpha() #exemple
 	images['background'] = pygame.image.load("fond.jpeg").convert()
-	images['robot'] = pygame.image.load("robot.jpeg").convert_alpha()
+	images['robot'] = pygame.image.load("robot.png").convert_alpha()
+	images['ground'] = pygame.image.load("ground.png").convert_alpha()
 	return images
 
 
@@ -25,16 +26,18 @@ def create_window(grid,tile_size):
 	pygame.init()
 	return pygame.display.set_mode((width*tile_size,height*tile_size))
 
+    			
+
 def display_map(grid,window,tile_size,images):
 	"""
 	images : dico qui contient les images
-	affiche le fond tout ce qui se trouve dans la grille
+	affiche le fond et tout ce qui se trouve dans la grille
 	"""
-	window.blit(images['background'],(-30,-30))
 	height = len(grid)
 	width = len(grid[0])
 	for i in range(height):
 		for j in range(width):
+			window.blit(images['ground'],(j*tile_size,i*tile_size))
 			if grid[i][j] != None:
 				window.blit(images[grid[i][j]],(j*tile_size,i*tile_size))
 			#window.blit(images['gumba'],(j*tile_size,i*tile_size))
