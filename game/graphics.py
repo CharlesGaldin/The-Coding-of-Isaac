@@ -4,7 +4,10 @@ from pygame.locals import *
 #pygame.key.set_repeat(400,30)
 
 def load_images():
-    #"""permet de stocker au début les images dont on aura besoin dans un dictionnaire"""
+	"""
+	permet de stocker au début les images dont on aura besoin dans un dictionnaire
+	renvoie le dictionnaire
+	"""
 	images = {}
 	images['gumba'] = pygame.image.load("gumba.png").convert_alpha() #exemple
 	images['background'] = pygame.image.load("fond.jpeg").convert()
@@ -14,12 +17,16 @@ def load_images():
 def create_window(window_height,window_width,tile_size):
 	"""
 	window_size/widh : nombre de cases de la grille en hauteur/
+	renvoie la fenetre de jeu
 	"""
 	pygame.init()
 	return pygame.display.set_mode((window_width*tile_size,window_height*tile_size))
 
 def display_map(grid,window,tile_size,images):
-    #"""images : dico qui contient les images"""
+	"""
+	images : dico qui contient les images
+	affiche le fond tout ce qui se trouve dans la grille
+	"""
 	window.blit(images['background'],(-30,-30))
 	height = len(grid)
 	width = len(grid[0])
@@ -48,4 +55,4 @@ def run():
 				play = 0
 		pygame.display.flip()
 
-#run()
+run()
