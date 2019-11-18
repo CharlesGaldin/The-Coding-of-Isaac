@@ -6,12 +6,11 @@ import pygame.locals
 import threading
 from game.editor import EditorSetUp
 
-GRID_SIZE = 15
-
 class Game:
 	def __init__(self):
-		self.grid = init_grid(GRID_SIZE)
+		self.grid = init_grid()
 		self.player = player_placement(self.grid)
+
 		self.window = create_window(self.grid, 30)
 		self.images = load_images()
 		
