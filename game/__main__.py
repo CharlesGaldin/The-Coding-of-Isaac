@@ -31,6 +31,7 @@ class Game:
 	
 	def run(self):
 		running = True
+		frame_counter = 0
 		display_map(self.grid, self.window, 30, self.images)
 		while running:
 			display_map(self.grid, self.window, 30, self.images)
@@ -44,10 +45,11 @@ class Game:
 				if event.type == pygame.locals.QUIT:
 					running = False
 			
-			if self.editor.isSubmitted:
+			if frame_counter % 15 == 0 and self.editor.isSubmitted:
 				codeJoueur(self.player, self.editor.userCode, self.grid)
 
 			pygame.display.flip()
+			frame_counter += 1
 		pygame.quit()
 		self.editor.close()
 
