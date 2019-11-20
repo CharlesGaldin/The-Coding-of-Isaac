@@ -9,7 +9,7 @@ import pygame
 import pygame.locals
 from game.graphics import get_window_size, create_window, load_images, display_map
 
-from game.ExecCode import codeJoueur
+from game.ExecCode import codeJoueur, submit
 
 class Game:
 	def __init__(self):
@@ -31,6 +31,7 @@ class Game:
 	
 	def run(self):
 		running = True
+		isCompiled = False
 		display_map(self.grid, self.window, 30, self.images)
 		while running:
 			display_map(self.grid, self.window, 30, self.images)
@@ -44,8 +45,12 @@ class Game:
 				if event.type == pygame.locals.QUIT:
 					running = False
 			
-			if self.editor.isSubmitted:
-				codeJoueur(self.player, self.editor.userCode, self.grid)
+			if self.editor.isSubmitted and not isCompiled:
+				isCompiled = True
+				turn = submit(self.player, self.editor.userCode, self.grid)
+
+			if self.editor.isSubmitted and isCompiled:
+				codeJoueur(self.player, turn, self.grid)
 
 			pygame.display.flip()
 		pygame.quit()
