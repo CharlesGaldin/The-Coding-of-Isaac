@@ -58,9 +58,9 @@ def move_entity(entity, direction, grid):
 	else:
 		print('You already moved this turn')
 
-def fire(pos, grid):
-	if entity.attack == True:
-		if grid[pos[0]][pos[1]] == None :
-			print 'You missed'
-		else:
-			pass
+#def fire(pos, grid):
+	#if entity.attack == True:
+	#	if grid[pos[0]][pos[1]] == None :
+	#		print('You missed')
+	#	else:
+	#		pass
