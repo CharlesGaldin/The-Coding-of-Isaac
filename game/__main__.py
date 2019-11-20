@@ -1,4 +1,5 @@
 from game.engine import init_grid, player_placement
+from game.level1 import init_grid_lv1
 
 import tkinter as tk
 import os
@@ -13,28 +14,27 @@ from game.ExecCode import codeJoueur
 
 class Game:
 	def __init__(self):
-		self.grid = init_grid()
-		self.player = player_placement(self.grid)
+		self.static_grid = init_grid_lv1()
+		self.dynamic_grid = init_grid()
+		self.player = player_placement(self.dynamic_grid)
 		
 		self.editor = EditorSetUp()
 		
-		win_w, win_h = get_window_size(self.grid, 30)
+		win_w, win_h = get_window_size(self.static_grid, 30)
 		self.pygame_frame = tk.Frame(self.editor.master, width = win_w, height = win_h)
 		self.pygame_frame.pack(side = tk.LEFT)
 		
 		os.environ['SDL_WINDOWID'] = str(self.pygame_frame.winfo_id())
 		if platform.system == "Windows":
 			os.environ['SDL_VIDEODRIVER'] = 'windib'
-		self.window = create_window(self.grid, 30)
+		self.window = create_window(self.static_grid, 30)
 		
 		self.images = load_images()
 	
 	def run(self):
 		running = True
 		frame_counter = 0
-		display_map(self.grid, self.window, 30, self.images)
 		while running:
-			display_map(self.grid, self.window, 30, self.images)
 			pygame.time.Clock().tick(60)
 			
 			self.editor.update()
@@ -46,7 +46,10 @@ class Game:
 					running = False
 			
 			if frame_counter % 15 == 0 and self.editor.isSubmitted:
-				codeJoueur(self.player, self.editor.userCode, self.grid)
+				codeJoueur(self.player, self.editor.userCode, self.dynamic_grid)
+			
+			display_map(self.static_grid, self.window, 30, self.images, True)
+			display_map(self.dynamic_grid, self.window, 30, self.images, False)
 
 			pygame.display.flip()
 			frame_counter += 1

@@ -30,7 +30,7 @@ def create_window(grid,tile_size):
 
     			
 
-def display_map(grid,window,tile_size,images):
+def display_map(grid,window,tile_size,images,ground_where_empty):
 	"""
 	images : dico qui contient les images
 	affiche le fond et tout ce qui se trouve dans la grille
@@ -39,18 +39,10 @@ def display_map(grid,window,tile_size,images):
 	width = len(grid[0])
 	for i in range(height):
 		for j in range(width):
-			window.blit(images['ground'],(j*tile_size,i*tile_size))
 			if grid[i][j] != None:
 				window.blit(images[grid[i][j].artwork],(j*tile_size,i*tile_size))
-			#window.blit(images['gumba'],(j*tile_size,i*tile_size))
-
-
-	pygame.display.flip()
-
-
-	
-    						
-    					
+			elif ground_where_empty:
+				window.blit(images['ground'],(j*tile_size,i*tile_size))
 
 
 ##ZONE DE TESTS
