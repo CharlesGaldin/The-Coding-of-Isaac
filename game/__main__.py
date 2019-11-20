@@ -14,9 +14,6 @@ class Game:
 	def __init__(self):
 		self.grid = init_grid()
 		self.player = player_placement(self.grid)
-
-		self.window = create_window(self.grid, 30)
-		self.images = load_images()
 		
 		self.editor = EditorSetUp()
 		
