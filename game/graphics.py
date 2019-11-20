@@ -16,15 +16,16 @@ def load_images():
 	return images
 
 
-def create_window(grid,tile_size):
-	"""
-	window_size/widh : nombre de cases de la grille en hauteur/
-	renvoie la fenetre de jeu
-	"""
-	height = len(grid)
+def get_window_size(grid, tile_size):
 	width = len(grid[0])
-	pygame.init()
-	return pygame.display.set_mode((width*tile_size,height*tile_size))
+	height = len(grid)
+	return width*tile_size, height*tile_size
+
+
+def create_window(grid,tile_size):
+	screen = pygame.display.set_mode((get_window_size(grid, tile_size)))
+	pygame.display.init()
+	return screen
 
     			
 
