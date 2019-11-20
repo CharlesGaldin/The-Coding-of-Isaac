@@ -40,7 +40,7 @@ class Unmoving_Entity:
 		self.artwork = artwork
 
 class Objective(Unmoving_Entity):
-		
+    		
 	def __init__(self , position , artwork):
 		Unmoving_Entity.__init__(self , position , artwork)
 

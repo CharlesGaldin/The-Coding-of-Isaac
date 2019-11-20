@@ -13,7 +13,7 @@ def load_images():
 	#images['background'] = pygame.image.load("fond.jpeg").convert()
 	images['robot'] = pygame.image.load("assets/robot.png").convert_alpha()
 	images['ground'] = pygame.image.load("assets/ground.png").convert_alpha()
-	images['door'] = pygame.image.load("assets/porte.jpg").convert()
+	images['door'] = pygame.image.load("assets/door.jpg").convert()
 	return images
 
 
@@ -62,7 +62,7 @@ def run():
 	grid = [[None for i in range(width)] for j in range(height)]
 	###
 	play = 1
-	grid[5][5] = 'robot'
+	grid[5][5] = 'door'
 	window = create_window(grid,tile_size)
 	banque_images = load_images()
 	display_map(grid,window,30,banque_images)
