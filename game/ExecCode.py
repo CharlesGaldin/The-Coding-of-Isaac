@@ -6,3 +6,7 @@ def codeJoueur(player, userCode, grille):
         return tuple(p)
     correspondances = {"move" : lambda direction : move_entity(player, direction), "getPos" : lambda : pos}
     exec(userCode, correspondances)
+    try:
+        turn()
+    except:
+        pass
