@@ -1,7 +1,7 @@
 class Moving_Entity:
 	
 	def __init__(self , position , health , attack , artwork):
-
+	
 		self.health = health
 		self.pos = position
 		self.artwork = artwork
@@ -16,7 +16,7 @@ class Moving_Entity:
 		self.health += n
 
 	def attack_enemy(self , target):
-    		health_change(target , -self.attack)		
+			health_change(target , -self.attack)		
 
 class Player(Moving_Entity):
 
@@ -40,9 +40,10 @@ class Unmoving_entity:
 		self.position = position
 
 class Objective:
-    	
-	def __init__()
+		
+	def __init__(self , position):
+		Unmoving_entity.__init__(self , position)
 
 class Obstacle:
-	def __init__(self):
-		pass
+	def __init__(self , position):
+		Unmoving_entity.__init__(self , position)
