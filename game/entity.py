@@ -18,7 +18,7 @@ class Moving_Entity:
 		self.health += n
 
 	def attack_enemy(self , target):
-			health_change(target , -self.attack)		
+		health_change(target , -self.attack)		
 
 class Player(Moving_Entity):
 
