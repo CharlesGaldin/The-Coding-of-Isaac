@@ -44,3 +44,7 @@ This project is licensed under the [MIT License](LICENSE.md).
 ## Useful links
 
 - [Trello](https://trello.com/b/p6avnPuj/the-coding-of-isaac)
+=======
+## Useful links
+
+Trello : https://trello.com/b/p6avnPuj/the-coding-of-isaac
