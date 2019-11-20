@@ -23,7 +23,7 @@ def move_entity(entity, direction, grid):
 		pos = [entity.pos[0],entity.pos[1]]
 		if direction == 'up':
 			if pos[0]==0:
-				raise NameError('Move not possible')
+				pass
 			else:
 				entity.pos[0] -= 1
 				grid[entity.pos[0]][entity.pos[1]] = grid[pos[0]][pos[1]]
@@ -31,7 +31,7 @@ def move_entity(entity, direction, grid):
 				entity.move = False
 		elif direction == 'down':
 			if pos[0] == GRID_SIZE-1:
-				raise NameError('Move not possible')
+				pass
 			else:
 				entity.pos[0] += 1
 				entity.move = False
@@ -39,7 +39,7 @@ def move_entity(entity, direction, grid):
 				grid[pos[0]][pos[1]] = None
 		elif direction == 'left':
 			if pos[1]==0:
-				raise NameError('Move not possible')
+				pass
 			else:
 				entity.pos[1] -= 1
 				entity.move = False
@@ -47,7 +47,7 @@ def move_entity(entity, direction, grid):
 				grid[pos[0]][pos[1]] = None
 		elif direction == 'right':
 			if pos[1]==GRID_SIZE-1:
-				raise NameError('Move not possible')
+				pass
 			else:
 				entity.pos[1] += 1
 				entity.move = False

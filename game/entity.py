@@ -41,11 +41,11 @@ class Unmoving_entity:
 		self.position = position
 		self.artwork = artwork
 
-class Objective:
+class Objective(Unmoving_entity):
 		
 	def __init__(self , position , artwork):
-		Unmoving_entity.__init(self , position , artwork)
+		Unmoving_entity.__init__(self , position , artwork)
 
-class Obstacle:
+class Obstacle(Unmoving_entity):
 	def __init__(self  , position , artwork):
 		Unmoving_entity.__init__(self , position , artwork)
