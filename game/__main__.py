@@ -1,4 +1,4 @@
-from game.engine import init_grid, player_placement
+from game.engine import init_grid, player_placement, monster_pop
 from game.level1 import init_grid_lv1
 
 import tkinter as tk
@@ -44,9 +44,12 @@ class Game:
 			for event in pygame.event.get():
 				if event.type == pygame.locals.QUIT:
 					running = False
-			
+
 			if frame_counter % 15 == 0 and self.editor.isSubmitted:
 				codeJoueur(self.player, self.editor.userCode, self.dynamic_grid)
+
+				if frame_counter % 240 == 0:
+					monster_pop(self.dynamic_grid)
 			
 			display_map(self.static_grid, self.window, 30, self.images, True)
 			display_map(self.dynamic_grid, self.window, 30, self.images, False)
