@@ -18,21 +18,19 @@ class Moving_Entity:
 		self.health += n
 
 	def attack_enemy(self , target):
-			health_change(target , -self.attack)		
+		health_change(target , -self.attack)		
 
 class Player(Moving_Entity):
 
 	def __init__(self , position , health = 10 , attack = 2 ):
-		
 		Moving_Entity.__init__(self , position , health , attack , "robot")
 
 class Monster(Moving_Entity):
 	
 	def __init__(self , position , health , attack , artwork):
-
 		Moving_Entity.__init__(self , position ,  health , attack , artwork)
 
-class Unmoving_entity:
+class Unmoving_Entity:
 
 	def __init__(self , position , artwork):
 		"""
@@ -41,11 +39,11 @@ class Unmoving_entity:
 		self.position = position
 		self.artwork = artwork
 
-class Objective:
+class Objective(Unmoving_Entity):
 		
 	def __init__(self , position , artwork):
-		Unmoving_entity.__init(self , position , artwork)
+		Unmoving_Entity.__init__(self , position , artwork)
 
-class Obstacle:
+class Obstacle(Unmoving_Entity):
 	def __init__(self  , position , artwork):
-		Unmoving_entity.__init__(self , position , artwork)
+		Unmoving_Entity.__init__(self , position , artwork)
