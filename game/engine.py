@@ -34,9 +34,9 @@ def move_entity(entity, direction, dynamic_grid):
 				dynamic_grid[entity.pos[0]][entity.pos[1]] = dynamic_grid[pos[0]][pos[1]]
 				dynamic_grid[pos[0]][pos[1]] = None
 				entity.move = False
-		elif direction == 'down' or dynamic_grid[pos[0]+1][pos[1]] != None:
-			if pos[0] == GRID_SIZE-2:
-					pass
+		elif direction == 'down':
+			if pos[0] == GRID_SIZE-2 or dynamic_grid[pos[0]+1][pos[1]] != None:
+				pass
 			else:
 				entity.pos[0] += 1
 				entity.move = False
