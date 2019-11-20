@@ -13,11 +13,11 @@ def player_placement(dynamic_grid):
 def update(dynamic_grid):
 	pass
 
-def move_entity(entity, direction, dynamic_grid):
+def move_entity(entity, direction, dynamic_grid, static_grid):
 	if entity.moved == True:
 		pos = [entity.pos[0],entity.pos[1]]
 		if direction == 'up':
-			if pos[0]==0:
+			if pos[0]==1:
 				pass
 			else:
 				entity.pos[0] -= 1
@@ -25,7 +25,7 @@ def move_entity(entity, direction, dynamic_grid):
 				dynamic_grid[pos[0]][pos[1]] = None
 				entity.move = False
 		elif direction == 'down':
-			if pos[0] == GRID_SIZE-1:
+			if pos[0] == GRID_SIZE-2:
 				pass
 			else:
 				entity.pos[0] += 1
@@ -33,7 +33,7 @@ def move_entity(entity, direction, dynamic_grid):
 				dynamic_grid[entity.pos[0]][entity.pos[1]] = dynamic_grid[pos[0]][pos[1]]
 				dynamic_grid[pos[0]][pos[1]] = None
 		elif direction == 'left':
-			if pos[1]==0:
+			if pos[1]==1:
 				pass
 			else:
 				entity.pos[1] -= 1
@@ -41,7 +41,7 @@ def move_entity(entity, direction, dynamic_grid):
 				dynamic_grid[entity.pos[0]][entity.pos[1]] = dynamic_grid[pos[0]][pos[1]]
 				dynamic_grid[pos[0]][pos[1]] = None
 		elif direction == 'right':
-			if pos[1]==GRID_SIZE-1:
+			if pos[1]==GRID_SIZE-2:
 				pass
 			else:
 				entity.pos[1] += 1
