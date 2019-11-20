@@ -10,7 +10,7 @@ import pygame
 import pygame.locals
 from game.graphics import get_window_size, create_window, load_images, display_map
 
-from game.ExecCode import codeJoueur
+from game.ExecCode import codeJoueur, submit
 
 class Game:
 	def __init__(self):
@@ -30,10 +30,13 @@ class Game:
 		self.window = create_window(self.static_grid, 30)
 		
 		self.images = load_images()
+
+		self.correspondances = None
 	
 	def run(self):
 		running = True
 		frame_counter = 0
+		isCompiled = False
 		while running:
 			pygame.time.Clock().tick(60)
 			
@@ -53,6 +56,13 @@ class Game:
 			
 			display_map(self.static_grid, self.window, 30, self.images, True)
 			display_map(self.dynamic_grid, self.window, 30, self.images, False)
+
+			if self.editor.isSubmitted and not isCompiled:
+				isCompiled = True
+				self.correspondances = submit(self.player, self.editor.userCode, self.grid)
+
+			if self.editor.isSubmitted and isCompiled:
+				codeJoueur(self.player, self.correspondances)
 
 			pygame.display.flip()
 			frame_counter += 1
