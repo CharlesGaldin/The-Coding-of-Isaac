@@ -13,7 +13,7 @@ def load_images():
 	#images['background'] = pygame.image.load("fond.jpeg").convert()
 	images['robot'] = pygame.image.load("assets/robot.png").convert_alpha()
 	images['ground'] = pygame.image.load("assets/ground.png").convert_alpha()
-	images['door'] = pygame.image.load("assets/porte.jpg").convert_alpha()
+	images['door'] = pygame.image.load("assets/porte.jpg").convert()
 	return images
 
 
