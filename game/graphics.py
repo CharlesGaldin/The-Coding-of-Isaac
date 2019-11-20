@@ -14,6 +14,15 @@ def load_images():
 	images['robot'] = pygame.image.load("assets/robot.png").convert_alpha()
 	images['ground'] = pygame.image.load("assets/ground.png").convert_alpha()
 	images['door'] = pygame.image.load("assets/door.png").convert()
+	images['wall_upper_left_corner'] = pygame.image.load("assets/wall_upper_left_corner.png").convert()
+	images['wall_upper_right_corner'] = pygame.image.load("assets/wall_upper_right_corner.png").convert()
+	images['wall_bottom_left_corner'] = pygame.image.load("assets/wall_bottom_left_corner.png").convert()
+	images['wall_bottom_right_corner'] = pygame.image.load("assets/wall_bottom_left_corner.png").convert()
+	images['wall_up'] = pygame.image.load("assets/wall_up.png").convert()
+	images['wall_down'] = pygame.image.load("assets/wall_down.png").convert()
+	images['wall_left'] = pygame.image.load("assets/wall_left.png").convert()
+	images['wall_right'] = pygame.image.load("assets/wall_right.png").convert()
+	
 	return images
 
 
