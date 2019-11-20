@@ -15,7 +15,7 @@ def update(dynamic_grid):
 	pass
 
 def move_entity(entity, direction, dynamic_grid):
-    """
+	"""
 	INPUT: 
 		prend en arg une entity, un string et la grille dynamique
 	OUTPUT:
@@ -23,11 +23,12 @@ def move_entity(entity, direction, dynamic_grid):
 	RETURN:
 		uniquement en cas d erreur, renvoie l erreur rencontrée
 	"""
+	
 	if entity.moved == True:
 		pos = [entity.pos[0],entity.pos[1]]
 		if direction == 'up':
 			if pos[0]==1:
-    				pass
+					pass
 			else:
 				entity.pos[0] -= 1
 				dynamic_grid[entity.pos[0]][entity.pos[1]] = dynamic_grid[pos[0]][pos[1]]
@@ -35,7 +36,7 @@ def move_entity(entity, direction, dynamic_grid):
 				entity.move = False
 		elif direction == 'down':
 			if pos[0] == GRID_SIZE-2:
-    				pass
+					pass
 			else:
 				entity.pos[0] += 1
 				entity.move = False
@@ -43,7 +44,7 @@ def move_entity(entity, direction, dynamic_grid):
 				dynamic_grid[pos[0]][pos[1]] = None
 		elif direction == 'left':
 			if pos[1]==1:
-    				pass
+					pass
 			else:
 				entity.pos[1] -= 1
 				entity.move = False
@@ -51,7 +52,7 @@ def move_entity(entity, direction, dynamic_grid):
 				dynamic_grid[pos[0]][pos[1]] = None
 		elif direction == 'right':
 			if pos[1]==GRID_SIZE-2:
-    				pass
+					pass
 			else:
 				entity.pos[1] += 1
 				entity.move = False
