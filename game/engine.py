@@ -13,7 +13,7 @@ def player_placement(dynamic_grid):
 def update(dynamic_grid):
 	pass
 
-def move_entity(entity, direction, dynamic_grid, static_grid):
+def move_entity(entity, direction, dynamic_grid):
 	if entity.moved == True:
 		pos = [entity.pos[0],entity.pos[1]]
 		if direction == 'up':
