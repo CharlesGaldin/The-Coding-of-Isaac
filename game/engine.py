@@ -23,7 +23,6 @@ def move_entity(entity, direction, dynamic_grid):
 	RETURN:
 		uniquement en cas d erreur, renvoie l erreur rencontrée
 	"""
-
 	if entity.moved == True:
 		pos = [entity.pos[0],entity.pos[1]]
 		if direction == 'up':
