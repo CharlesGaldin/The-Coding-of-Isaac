@@ -63,7 +63,7 @@ def move_entity(entity, direction, dynamic_grid):
 
 def monster_pop(dynamic_grid):
 	cote = random.randint(0,3)
-	case = random.randint(0,GRID_SIZE-1)
+	case = random.randint(1,GRID_SIZE-2)
 	if cote == 0: #haut
 		x,y = case,0
 	elif cote == 1: #bas
@@ -72,7 +72,7 @@ def monster_pop(dynamic_grid):
 		x,y = 0,case
 	elif cote == 3: #droite
 		x,y = GRID_SIZE-1,case
-	new_monster = Monster((x,y),10,10,'goomba')
+	new_monster = Monster([y,x],10,10,'goomba')
 	dynamic_grid[y][x] = new_monster
 	
 		
