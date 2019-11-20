@@ -7,13 +7,13 @@ def submit(player, userCode, dynamic_grid):
     correspondances = {"move" : lambda direction : move_entity(player, direction, dynamic_grid), "getPos" : lambda : pos}
     try:
     	exec(userCode, correspondances)
-    except:
-    	print("Error on first code execution")
+    except Exception as e:
+    	print("Error on first code execution:", e)
     return correspondances
 
 
 def codeJoueur(player, correspondances):
     try:
         correspondances['turn']()
-    except:
-        print("Error during turn() execution")
+    except Exception as e:
+        print("Error during turn() execution", e)
