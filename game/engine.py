@@ -4,7 +4,6 @@ GRID_SIZE = 15
 
 def init_grid():
 	return [[None for i in range(GRID_SIZE)] for j in range(GRID_SIZE)]
-	return dynamic_grid
 
 def player_placement(dynamic_grid):
 	p=GRID_SIZE//2
