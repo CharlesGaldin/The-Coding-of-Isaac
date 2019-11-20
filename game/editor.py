@@ -12,13 +12,13 @@ class EditorSetUp:
 		self.label.pack()
 
 		self.text = tk.Text(self.editor)
-		self.text.insert(tk.INSERT, """try editing !
-Please use the folowing syntax : 
+		self.text.insert(tk.INSERT, """#try editing !
+#Please use the folowing syntax : 
 
 def turn():
     --- add your code...
 
-Available functions: move('*'), attack('*') and  getPos() where '*' can be :    'up', 'down', 'left' or 'right'.""")
+#Available functions: move('*'), attack('*') and  getPos() where '*' can be :    'up', 'down', 'left' or 'right'.""")
 		self.text.pack()
 		
 		self.close_button = tk.Button(self.editor, text="Submit", command=self.submit)
