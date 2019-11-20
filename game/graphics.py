@@ -22,7 +22,7 @@ def load_images():
 	images['wall_down'] = pygame.image.load("assets/wall_down.png").convert()
 	images['wall_left'] = pygame.image.load("assets/wall_left.png").convert()
 	images['wall_right'] = pygame.image.load("assets/wall_right.png").convert()
-	
+	images['goomba'] = pygame.image.load("assets/goomba.png").convert_alpha()
 	return images
 
 

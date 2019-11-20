@@ -1,4 +1,5 @@
 from game.entity import Player, Monster
+import random
 
 GRID_SIZE = 15
 
@@ -18,7 +19,7 @@ def move_entity(entity, direction, dynamic_grid):
 		pos = [entity.pos[0],entity.pos[1]]
 		if direction == 'up':
 			if pos[0]==1:
-				pass
+    				pass
 			else:
 				entity.pos[0] -= 1
 				dynamic_grid[entity.pos[0]][entity.pos[1]] = dynamic_grid[pos[0]][pos[1]]
@@ -26,7 +27,7 @@ def move_entity(entity, direction, dynamic_grid):
 				entity.move = False
 		elif direction == 'down':
 			if pos[0] == GRID_SIZE-2:
-				pass
+    				pass
 			else:
 				entity.pos[0] += 1
 				entity.move = False
@@ -34,7 +35,7 @@ def move_entity(entity, direction, dynamic_grid):
 				dynamic_grid[pos[0]][pos[1]] = None
 		elif direction == 'left':
 			if pos[1]==1:
-				pass
+    				pass
 			else:
 				entity.pos[1] -= 1
 				entity.move = False
@@ -42,7 +43,7 @@ def move_entity(entity, direction, dynamic_grid):
 				dynamic_grid[pos[0]][pos[1]] = None
 		elif direction == 'right':
 			if pos[1]==GRID_SIZE-2:
-				pass
+    				pass
 			else:
 				entity.pos[1] += 1
 				entity.move = False
@@ -59,3 +60,19 @@ def move_entity(entity, direction, dynamic_grid):
 	#		print('You missed')
 	#	else:
 	#		pass
+
+def monster_pop(dynamic_grid):
+	cote = random.randint(0,3)
+	case = random.randint(0,GRID_SIZE-1)
+	if cote == 0: #haut
+		x,y = case,0
+	elif cote == 1: #bas
+		x,y = case,GRID_SIZE-1
+	elif cote == 2: #gauche
+		x,y = 0,case
+	elif cote == 3: #droite
+		x,y = GRID_SIZE-1,case
+	new_monster = Monster((x,y),10,10,'goomba')
+	dynamic_grid[y][x] = new_monster
+	
+		
