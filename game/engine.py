@@ -13,14 +13,14 @@ def init_grid_level(level):
 def player_placement(grid):
 	p=GRID_SIZE//2
 	grid[p][p] = Player([p , p])
-	return grid
+	return gird[p][p]
 
 def update(grid):
 	pass
 
 def move_entity(entity, direction):
     if entity.moved == True:
-		pos = [entity.pos[0],entity.pos[1]]
+	pos = [entity.pos[0],entity.pos[1]]
 		if direction == 'up':
 			if pos[0]==0:
 				raise NameError('Move not possible')
@@ -49,3 +49,7 @@ def move_entity(entity, direction):
 			raise NameError('Attribute not recogized, please choose between "right", "left", "up" and "down"')
 	else:
 		print('You already moved this turn')
+
+def fire(entity, pos):
+	if entity.attack == True:
+		if 
