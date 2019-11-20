@@ -48,22 +48,20 @@ class Game:
 				if event.type == pygame.locals.QUIT:
 					running = False
 
-			if frame_counter % 15 == 0 and self.editor.isSubmitted:
-				codeJoueur(self.player, self.editor.userCode, self.dynamic_grid)
+			if frame_counter % 15 == 0:
+				if self.editor.isSubmitted and not isCompiled:
+					isCompiled = True
+					self.correspondances = submit(self.player, self.editor.userCode, self.dynamic_grid)
+				
+				if self.editor.isSubmitted and isCompiled:
+					codeJoueur(self.player, self.correspondances)
 
 				if frame_counter % 240 == 0:
 					monster_pop(self.dynamic_grid)
 			
 			display_map(self.static_grid, self.window, 30, self.images, True)
 			display_map(self.dynamic_grid, self.window, 30, self.images, False)
-
-			if self.editor.isSubmitted and not isCompiled:
-				isCompiled = True
-				self.correspondances = submit(self.player, self.editor.userCode, self.grid)
-
-			if self.editor.isSubmitted and isCompiled:
-				codeJoueur(self.player, self.correspondances)
-
+			
 			pygame.display.flip()
 			frame_counter += 1
 		pygame.quit()
