@@ -1,14 +1,15 @@
 from game.engine import init_grid, player_placement
-from game.graphics import get_window_size, create_window, load_images, display_map
-import pygame
-import pygame.locals
+
 import tkinter as tk
 import os
 import platform
-from game.ExecCode import codeJoueur
-
-import threading
 from game.editor import EditorSetUp
+
+import pygame
+import pygame.locals
+from game.graphics import get_window_size, create_window, load_images, display_map
+
+from game.ExecCode import codeJoueur
 
 class Game:
 	def __init__(self):
