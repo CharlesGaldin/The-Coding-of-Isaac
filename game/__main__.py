@@ -5,6 +5,7 @@ import pygame.locals
 import tkinter as tk
 import os
 import platform
+from game.ExecCode import codeJoueur
 
 import threading
 from game.editor import EditorSetUp
@@ -13,6 +14,9 @@ class Game:
 	def __init__(self):
 		self.grid = init_grid()
 		self.player = player_placement(self.grid)
+
+		self.window = create_window(self.grid, 30)
+		self.images = load_images()
 		
 		self.editor = EditorSetUp()
 		
@@ -31,6 +35,7 @@ class Game:
 		running = True
 		display_map(self.grid, self.window, 30, self.images)
 		while running:
+			display_map(self.grid, self.window, 30, self.images)
 			pygame.time.Clock().tick(60)
 			
 			self.editor.update()
@@ -40,6 +45,10 @@ class Game:
 			for event in pygame.event.get():
 				if event.type == pygame.locals.QUIT:
 					running = False
+			
+			if self.editor.isSubmitted:
+				codeJoueur(self.player, self.editor.userCode, self.grid)
+
 			pygame.display.flip()
 		pygame.quit()
 		self.editor.close()
