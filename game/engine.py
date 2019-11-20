@@ -27,32 +27,32 @@ def move_entity(entity, direction, dynamic_grid):
 	if entity.moved == True:  #verification que le joueur n'ai pas déja bougé ce tour là
 		pos = [entity.pos[0],entity.pos[1]]
 		if direction == 'up':
-			if pos[0]==1:
-					pass
+			if pos[0]==1 or dynamic_grid[pos[0]-1][pos[1]] != None:
+				pass
 			else:
 				entity.pos[0] -= 1
 				dynamic_grid[entity.pos[0]][entity.pos[1]] = dynamic_grid[pos[0]][pos[1]]
 				dynamic_grid[pos[0]][pos[1]] = None
 				entity.move = False
 		elif direction == 'down':
-			if pos[0] == GRID_SIZE-2:
-					pass
+			if pos[0] == GRID_SIZE-2 or dynamic_grid[pos[0]+1][pos[1]] != None:
+				pass
 			else:
 				entity.pos[0] += 1
 				entity.move = False
 				dynamic_grid[entity.pos[0]][entity.pos[1]] = dynamic_grid[pos[0]][pos[1]]
 				dynamic_grid[pos[0]][pos[1]] = None
 		elif direction == 'left':
-			if pos[1]==1:
-					pass
+			if pos[1]==1 or dynamic_grid[pos[0]][pos[1]-1] != None:
+				pass
 			else:
 				entity.pos[1] -= 1
 				entity.move = False
 				dynamic_grid[entity.pos[0]][entity.pos[1]] = dynamic_grid[pos[0]][pos[1]]
 				dynamic_grid[pos[0]][pos[1]] = None
 		elif direction == 'right':
-			if pos[1]==GRID_SIZE-2:
-					pass
+			if pos[1]==GRID_SIZE-2 or dynamic_grid[pos[0]][pos[1]+1] != None:
+				pass
 			else:
 				entity.pos[1] += 1
 				entity.move = False
