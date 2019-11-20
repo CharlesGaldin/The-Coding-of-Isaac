@@ -25,8 +25,8 @@ class Player(Moving_Entity):
 
 class Monster(Moving_Entity):
 	
-	def __init__(self , position , health , attack , fire_range = 1 , artwork):
-		Moving_Entity.__init__(self , position ,  health , attack , fire_range , artwork)
+	def __init__(self , position , health , attack , artwork , fire_range = 1 ):
+		Moving_Entity.__init__(self , position ,  health , attack , fire_range , artwork )
 
 class Unmoving_Entity:
 
