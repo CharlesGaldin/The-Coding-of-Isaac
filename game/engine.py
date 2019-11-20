@@ -3,7 +3,7 @@ import random
 
 GRID_SIZE = 15
 
-def init_grid():
+def init_grid(): #renvoie une grille carrée de taille GRID_SIZE*GRID_SIZE remplie de None
 	return [[None for i in range(GRID_SIZE)] for j in range(GRID_SIZE)]
 
 def player_placement(dynamic_grid): #place le joueur au début de la partie
@@ -11,7 +11,7 @@ def player_placement(dynamic_grid): #place le joueur au début de la partie
 	dynamic_grid[p][p] = Player([p , p])
 	return dynamic_grid[p][p]
 
-def update(dynamic_grid):
+def update(dynamic_grid):  #ne fait rien et ne sert a rien pour l'instant, à développer
 	pass
 
 def move_entity(entity, direction, dynamic_grid):
@@ -23,8 +23,8 @@ def move_entity(entity, direction, dynamic_grid):
 	RETURN:
 		uniquement en cas d erreur, renvoie l erreur rencontrée
 	"""
-	
-	if entity.moved == True:
+
+	if entity.moved == True:  #verification que le joueur n'ai pas déja bougé ce tour là
 		pos = [entity.pos[0],entity.pos[1]]
 		if direction == 'up':
 			if pos[0]==1:
@@ -70,7 +70,7 @@ def move_entity(entity, direction, dynamic_grid):
 	#	else:
 	#		pass
 
-def monster_pop(dynamic_grid):
+def monster_pop(dynamic_grid):  #fait pop aléatoirement des goompas sur les bors de la map
 	cote = random.randint(0,3)
 	case = random.randint(1,GRID_SIZE-2)
 	if cote == 0: #haut
