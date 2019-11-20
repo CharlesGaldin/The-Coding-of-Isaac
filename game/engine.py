@@ -19,26 +19,33 @@ def update(grid):
 	pass
 
 def move_entity(entity, direction):
-	pos = [entity.pos[0],entity.pos[1]]
-	if direction == 'up':
-		if pos[0]==0:
-			raise NameError('Move not possible')
+    if entity.moved == True:
+		pos = [entity.pos[0],entity.pos[1]]
+		if direction == 'up':
+			if pos[0]==0:
+				raise NameError('Move not possible')
+			else:
+				entity.pos[0] -= 1
+				entity.move = False
+		elif direction == 'down':
+			if pos[0] == GRID_SIZE-1:
+				raise NameError('Move not possible')
+			else:
+				entity.pos[0] += 1
+				entity.move = False
+		elif direction == 'left':
+			if pos[1]==0:
+				raise NameError('Move not possible')
+			else:
+				entity.pos[1] -= 1
+				entity.move = False
+		elif direction == 'right':
+			if pos[1]==GRID_SIZE-1:
+				raise NameError('Move not possible')
+			else:
+				entity.pos[1] += 1
+				entity.move = False
 		else:
-			entity.pos[0] -= 1
-	elif direction == 'down':
-		if pos[0] == GRID_SIZE-1:
-			raise NameError('Move not possible')
-		else:
-			entity.pos[0] += 1
-	elif direction == 'left':
-		if pos[1]==0:
-			raise NameError('Move not possible')
-		else:
-			entity.pos[1] -= 1
-	elif direction == 'right':
-		if pos[1]==GRID_SIZE-1:
-			raise NameError('Move not possible')
-		else:
-			entity.pos[1] += 1
+			raise NameError('Attribute not recogized, please choose between "right", "left", "up" and "down"')
 	else:
-		raise NameError('Attribute not recogized, please choose between "right", "left", "up" and "down"')
+		print('You already moved this turn')
