@@ -31,7 +31,7 @@ def codeJoueur(player, correspondances):
 #   -Fonction pour obtenir la position des ennemis
 #   -Fonction pour obtenir la position de la sortie
 
-def entitie_attack(entitie, dir, dynamic_grid,monsters):
+def entitie_attack(entitie, dir, dynamic_grid, monsters):
     GRID_SIZE = len(dynamic_grid)
     position = entitie.pos.copy()
     fireMove = {"up": [-1,0], "down": [1,0], "left": [0,-1], "right": [0,1]}
@@ -43,4 +43,4 @@ def entitie_attack(entitie, dir, dynamic_grid,monsters):
         if dynamic_grid[position[0]][position[1]] != None:
             dynamic_grid[position[0]][position[1]].health_change(-entitie.attack)
             if dynamic_grid[position[0]][position[1]].health <= 0:
-                dynamic_grid[position[0]][position[1]].__del__(monsters, dynamic_grid)
+                dynamic_grid[position[0]][position[1]].kill(monsters, dynamic_grid)
