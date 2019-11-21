@@ -81,7 +81,7 @@ def monster_pop(dynamic_grid,monsters):
 		x,y = 0,case
 	elif cote == 3: #droite
 		x,y = GRID_SIZE-1,case
-	new_monster = Monster([y,x],10,10,'goomba')
+	new_monster = Monster([y,x],1,1,'goomba')
 	dynamic_grid[y][x] = new_monster
 	monsters.append(new_monster)
 	
@@ -102,7 +102,7 @@ def entity_attack(entity, dir, dynamic_grid, monsters):
 	GRID_SIZE = len(dynamic_grid)
 	position = entity.pos.copy()
 	fireMove = {"up": [-1,0], "down": [1,0], "left": [0,-1], "right": [0,1]}
-	if entity.attacked == True:    #vérification que le joueur n'a pas déjà attaqué ce tour là
+	if entity.attacked == False:    #vérification que le joueur n'a pas déjà attaqué ce tour là
 		if dir in fireMove:
 			for i in range(entity.range):
 				position[0] += fireMove[dir][0]
@@ -113,7 +113,7 @@ def entity_attack(entity, dir, dynamic_grid, monsters):
 					dynamic_grid[position[0]][position[1]].health_change(-entity.attack)
 					if dynamic_grid[position[0]][position[1]].health <= 0:
 						dynamic_grid[position[0]][position[1]].kill(monsters, dynamic_grid)
-			entity.attacked = False
+			entity.attacked = True
 		else:
 			raise NameError('Attribute not recogized, please choose between "right", "left", "up" and "down"')
 	else:
