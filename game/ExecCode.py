@@ -19,11 +19,8 @@ def submit(player, userCode, dynamic_grid, static_grid, exit, monsters):
 		"get_pos_exit" : lambda: pos(exit),
 		"attack": lambda dir: entity_attack(player, dir, dynamic_grid, monsters),
 	}
-	try:
-		check_import(userCode)
-		exec(userCode, correspondances)
-	except Exception as e:
-		print("Error on first code execution:", e)
+	check_import(userCode)
+	exec(userCode, correspondances)
 	return correspondances
 
 
