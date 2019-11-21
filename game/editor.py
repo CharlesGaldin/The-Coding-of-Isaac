@@ -15,8 +15,8 @@ class EditorSetUp:
 		self.text.insert(tk.INSERT, """#try editing !
 #Please use the folowing syntax : 
 
-def turn():
-    --- add your code...
+def turn(grid):
+	#--- add your code...
 
 #Available functions: move('*'), attack('*') and  getPos() where '*' can be :    'up', 'down', 'left' or 'right'.""")
 		self.text.pack()
