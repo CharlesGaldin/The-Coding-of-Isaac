@@ -31,6 +31,9 @@ class Player(Moving_Entity):
 	def __init__(self , position , health = 10 , attack = 2 , fire_range = 5):
 		super().__init__(position , health , attack , fire_range , "robot", tall_artwork = True)
 
+	def is_dead(self):
+		return self.health <= 0
+
 class Monster(Moving_Entity):
     
 	def __init__(self , position , health , attack , artwork , fire_range = 1 ):
