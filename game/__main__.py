@@ -1,4 +1,4 @@
-from game.engine import init_grid, player_placement, monster_pop
+from game.engine import init_grid, player_placement, monster_pop, update_monster_positions, move_entity
 from game.level1 import init_grid_lv1
 from game.entity import Moving_Entity
 
@@ -70,8 +70,10 @@ class Game:
 				if frame_counter % 15 == 0:
 					codeJoueur(self.player, self.correspondances)
 					
-					if frame_counter % 240 == 0:
+					if frame_counter % 30 == 0:
 						monster_pop(self.dynamic_grid)
+						update_monster_positions(self.dynamic_grid, self.static_grid, self.player.pos[1], self.player.pos[0])
+
 			
 			display_grid(self.static_grid, self.dynamic_grid, self.window, TILE_SIZE, self.images)
 			
