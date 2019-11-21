@@ -11,7 +11,7 @@ import pygame
 import pygame.locals
 from game.graphics import get_window_size, create_window, load_images, display_map
 
-from game.ExecCode import codeJoueur
+from game.ExecCode import codeJoueur, submit
 
 class Game:
 	def __init__(self):
@@ -31,6 +31,8 @@ class Game:
 		self.window = create_window(self.static_grid, 30)
 		
 		self.images = load_images()
+
+		self.correspondances = None
 	
 	def run(self):
 		running = True
@@ -39,6 +41,7 @@ class Game:
 		#new_monster = Monster([5,0],10,10,'goomba')
 		#self.dynamic_grid[5][0] = new_monster
 		##
+		isCompiled = False
 		while running:
 			pygame.time.Clock().tick(60)
 			
@@ -50,8 +53,13 @@ class Game:
 				if event.type == pygame.locals.QUIT:
 					running = False
 
-			if frame_counter % 15 == 0 and self.editor.isSubmitted:
-				codeJoueur(self.player, self.editor.userCode, self.dynamic_grid)
+			if frame_counter % 15 == 0:
+				if self.editor.isSubmitted and not isCompiled:
+					isCompiled = True
+					self.correspondances = submit(self.player, self.editor.userCode, self.dynamic_grid)
+				
+				if self.editor.isSubmitted and isCompiled:
+					codeJoueur(self.player, self.correspondances)
 
 				if frame_counter % 1 == 0:
 					monster_pop(self.dynamic_grid)
@@ -61,7 +69,6 @@ class Game:
 			
 			display_map(self.static_grid, self.window, 30, self.images, True)
 			display_map(self.dynamic_grid, self.window, 30, self.images, False)
-			
 
 			pygame.display.flip()
 			frame_counter += 1

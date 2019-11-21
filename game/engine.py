@@ -6,7 +6,7 @@ GRID_SIZE = 15
 def init_grid():
 	return [[None for i in range(GRID_SIZE)] for j in range(GRID_SIZE)]
 
-def player_placement(dynamic_grid):
+def player_placement(dynamic_grid): #place le joueur au début de la partie
 	p=GRID_SIZE//2
 	dynamic_grid[p][p] = Player([p , p])
 	return dynamic_grid[p][p]
@@ -15,11 +15,49 @@ def update(dynamic_grid):
 	pass
 
 def move_entity(entity, direction, dynamic_grid):
-	#if entity.moved == True:
-	pos = [entity.pos[0],entity.pos[1]]
-	if direction == 'up':
-		if pos[0]==1:
-				pass
+	"""
+	INPUT: 
+		prend en arg une entity, un string et la grille dynamique
+	OUTPUT:
+		mets a jour la grille dynamique et la position du joueur
+	RETURN:
+		uniquement en cas d erreur, renvoie l erreur rencontrée
+	"""
+	
+	if entity.moved == True:
+		pos = [entity.pos[0],entity.pos[1]]
+		if direction == 'up':
+			if pos[0]==1:
+					pass
+			else:
+				entity.pos[0] -= 1
+				dynamic_grid[entity.pos[0]][entity.pos[1]] = dynamic_grid[pos[0]][pos[1]]
+				dynamic_grid[pos[0]][pos[1]] = None
+				entity.move = False
+		elif direction == 'down':
+			if pos[0] == GRID_SIZE-2:
+					pass
+			else:
+				entity.pos[0] += 1
+				entity.move = False
+				dynamic_grid[entity.pos[0]][entity.pos[1]] = dynamic_grid[pos[0]][pos[1]]
+				dynamic_grid[pos[0]][pos[1]] = None
+		elif direction == 'left':
+			if pos[1]==1:
+					pass
+			else:
+				entity.pos[1] -= 1
+				entity.move = False
+				dynamic_grid[entity.pos[0]][entity.pos[1]] = dynamic_grid[pos[0]][pos[1]]
+				dynamic_grid[pos[0]][pos[1]] = None
+		elif direction == 'right':
+			if pos[1]==GRID_SIZE-2:
+					pass
+			else:
+				entity.pos[1] += 1
+				entity.move = False
+				dynamic_grid[entity.pos[0]][entity.pos[1]] = dynamic_grid[pos[0]][pos[1]]
+				dynamic_grid[pos[0]][pos[1]] = None
 		else:
 			entity.pos[0] -= 1
 			dynamic_grid[entity.pos[0]][entity.pos[1]] = dynamic_grid[pos[0]][pos[1]]
@@ -63,7 +101,7 @@ def move_entity(entity, direction, dynamic_grid):
 
 def monster_pop(dynamic_grid):
 	cote = random.randint(0,3)
-	case = random.randint(0,GRID_SIZE-1)
+	case = random.randint(1,GRID_SIZE-2)
 	if cote == 0: #haut
 		x,y = case,0
 	elif cote == 1: #bas
