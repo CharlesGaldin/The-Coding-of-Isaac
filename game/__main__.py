@@ -9,7 +9,7 @@ from game.editor import EditorSetUp
 
 import pygame
 import pygame.locals
-from game.graphics import get_window_size, create_window, load_images, display_map
+from game.graphics import get_window_size, create_window, load_images, display_grid
 
 from game.ExecCode import codeJoueur, submit
 
@@ -73,8 +73,7 @@ class Game:
 					if frame_counter % 240 == 0:
 						monster_pop(self.dynamic_grid)
 			
-			display_map(self.static_grid, self.window, TILE_SIZE, self.images, True)
-			display_map(self.dynamic_grid, self.window, TILE_SIZE, self.images, False)
+			display_grid(self.static_grid, self.dynamic_grid, self.window, TILE_SIZE, self.images)
 			
 			pygame.display.flip()
 			reset_entities(self.dynamic_grid)

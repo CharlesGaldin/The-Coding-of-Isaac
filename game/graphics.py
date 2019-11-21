@@ -38,24 +38,27 @@ def create_window(grid,tile_size):
 	pygame.display.init()
 	return screen
 
-    			
 
-def display_map(grid,window,tile_size,images,ground_where_empty):
+def display_tile(tile, x, y, window, tile_size, images):
+	if tile != None:
+		if tile.tall_artwork:
+			y -= tile_size
+		window.blit(images[tile.artwork], (x,y))
+
+def display_grid(static_grid, dynamic_grid, window, tile_size, images):
 	"""
 	images : dico qui contient les images
-	affiche le fond et tout ce qui se trouve dans la grille
+	Affiche les deux grilles superposées
 	"""
-	height = len(grid)
-	width = len(grid[0])
+	height = len(static_grid)
+	width = len(static_grid[0])
 	for i in range(height):
 		for j in range(width):
 			x, y = j*tile_size, i*tile_size
-			if grid[i][j] != None:
-				if grid[i][j].tall_artwork:
-					y -= tile_size
-				window.blit(images[grid[i][j].artwork], (x,y))
-			elif ground_where_empty:
+			if static_grid[i][j] == None:
 				window.blit(images['ground'], (x,y))
+			display_tile(static_grid[i][j], x, y, window, tile_size, images)
+			display_tile(dynamic_grid[i][j], x, y, window, tile_size, images)
 
 
 ##ZONE DE TESTS
