@@ -45,6 +45,8 @@ class Game:
 		self.correspondances = None
 		self.is_code_running = False
 		
+		self.turn_frames = 15
+		
 	
 	def reset_level(self):
 		if self.cur_level > LAST_LEVEL: return
@@ -52,10 +54,10 @@ class Game:
 		self.static_grid, self.exit = level_grid(self.cur_level)
 		self.dynamic_grid = init_grid()
 		self.player = player_placement(self.dynamic_grid)
+		self.frame_counter = 0
 	
 	def run(self):
 		running = True
-		frame_counter = 0
 		while running:
 			pygame.time.Clock().tick(60)
 			
@@ -71,29 +73,31 @@ class Game:
 					self.correspondances = submit(self.player, self.editor.user_code, self.dynamic_grid, self.static_grid, self.exit, self.monsters)
 				
 				if self.is_code_running:
-					if frame_counter % 15 == 0:
+					if self.frame_counter % self.turn_frames == 0:
 						codeJoueur(self.player, self.correspondances)
-						if frame_counter % 45 == 0:
+						if self.frame_counter % (3*self.turn_frames) == 0:
 							monster_pop(self.dynamic_grid, self.monsters)
 							update_monster_positions(self.dynamic_grid, self.static_grid, self.player)
 							if self.player.is_dead():
 								print("You're dead")
 								self.reset_level()
+								self.is_code_running = False
 				
 				if isinstance(self.static_grid[self.player.pos[0]][self.player.pos[1]], Objective):
-					self.is_code_running = False
 					self.cur_level += 1
 					print(f"Congratulations! Onto level {self.cur_level}!")
 					self.reset_level()
+					self.is_code_running = False
 				
-				display_grid(self.static_grid, self.dynamic_grid, self.window, TILE_SIZE, self.images)
+				turn_fraction = (self.frame_counter % self.turn_frames) / self.turn_frames
+				display_grid(self.static_grid, self.dynamic_grid, self.window, TILE_SIZE, self.images, turn_fraction)
 				reset_entities(self.dynamic_grid)
 				
 			else:
 				display_end_screen(self.window, self.images)
 			
 			pygame.display.flip()
-			frame_counter += 1
+			self.frame_counter += 1
 		pygame.quit()
 		self.editor.close()
 

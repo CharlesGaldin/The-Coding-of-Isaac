@@ -51,7 +51,7 @@ def display_tile(tile, x, y, window, tile_size, images):
 			y -= tile_size
 		window.blit(images[tile.artwork], (x,y))
 
-def display_grid(static_grid, dynamic_grid, window, tile_size, images):
+def display_grid(static_grid, dynamic_grid, window, tile_size, images, turn_fraction):
 	"""
 	images : dico qui contient les images
 	Affiche les deux grilles superposées
