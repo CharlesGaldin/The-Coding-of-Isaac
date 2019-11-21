@@ -30,7 +30,7 @@ def codeJoueur(player, correspondances):
 
 def entitie_attack(entitie, dir, dynamic_grid):
     GRID_SIZE = len(dynamic_grid)
-    position = entitie.pos
+    position = entitie.pos.copy()
     fireMove = {"up": [-1,0], "down": [1,0], "left": [0,-1], "right": [0,1]}
     for i in range(entitie.range):
         position[0] += fireMove[dir][0]
