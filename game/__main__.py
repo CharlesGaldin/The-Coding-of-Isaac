@@ -1,5 +1,6 @@
 from game.engine import init_grid, player_placement, monster_pop
 from game.level1 import init_grid_lv1
+from game.entity import Moving_Entity
 
 import tkinter as tk
 import os
@@ -11,6 +12,12 @@ import pygame.locals
 from game.graphics import get_window_size, create_window, load_images, display_map
 
 from game.ExecCode import codeJoueur, submit
+
+def reset_entities(dynamic_grid): #protocole de mise à jour des entity.moved de toutes les entités ayant fait leur tour
+	for i in range(len(dynamic_grid)):
+		for j in range(len(dynamic_grid[0])):
+			if isinstance(dynamic_grid[i][j], Moving_Entity):
+				dynamic_grid[i][j].moved = True
 
 class Game:
 	def __init__(self):
@@ -68,6 +75,7 @@ class Game:
 			display_map(self.dynamic_grid, self.window, 30, self.images, False)
 			
 			pygame.display.flip()
+			reset_entities(self.dynamic_grid)
 			frame_counter += 1
 		pygame.quit()
 		self.editor.close()
