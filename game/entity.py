@@ -63,7 +63,7 @@ class Monster(Moving_Entity):
 
 	def attack_player(self,player):
 		if (self.pos[0] == player.pos[0] and abs(self.pos[1]-player.pos[1]) == 1) or (self.pos[1] == player.pos[1] and abs(self.pos[0]-player.pos[0])==1):
-			player.health-=1
+			player.health-=self.attack
 			print("Vie :",player.health)
     	
 	

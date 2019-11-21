@@ -81,7 +81,7 @@ def monster_pop(dynamic_grid,monsters):
 		x,y = 0,case
 	elif cote == 3: #droite
 		x,y = GRID_SIZE-1,case
-	new_monster = Monster([y,x],10,10,'goomba')
+	new_monster = Monster([y,x],1,1,'goomba')
 	dynamic_grid[y][x] = new_monster
 	monsters.append(new_monster)
 	
