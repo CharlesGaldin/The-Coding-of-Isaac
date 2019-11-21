@@ -15,8 +15,9 @@ class Moving_Entity(Entity):
 		"""
 		super().__init__(position, artwork, tall_artwork)
 		self.health = health
-		self.moved = True
-		self.attaked = True
+		self.moved = False
+		self.attacked = False
+		self.last_movement = None
 		self.attack = attack
 		self.range = fire_range
 	
@@ -63,8 +64,8 @@ class Monster(Moving_Entity):
 
 	def attack_player(self,player):
 		if (self.pos[0] == player.pos[0] and abs(self.pos[1]-player.pos[1]) == 1) or (self.pos[1] == player.pos[1] and abs(self.pos[0]-player.pos[0])==1):
-			player.health-=self.attack
-			print("Vie :",player.health)
+			player.health_change(-self.attack)
+			print("Vie : ",player.health)
     	
 	
 	
