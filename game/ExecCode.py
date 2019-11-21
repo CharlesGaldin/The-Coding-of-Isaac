@@ -1,5 +1,5 @@
-from game.engine import move_entity
-from game.entity import Monster
+from game.engine import move_entity , entity_attack
+
 
 def submit(player, userCode, dynamic_grid, static_grid, exit, monsters):
     	
@@ -12,7 +12,7 @@ def submit(player, userCode, dynamic_grid, static_grid, exit, monsters):
 			position.append(tuple(i.pos))
 		return position
 			
-	correspondances = {"move" : lambda direction : move_entity(player, direction, dynamic_grid, static_grid), "get_pos_player" : lambda : pos(player), "get_pos_exit" : lambda : pos(exit), "attack" : lambda dir : entitie_attack(player, dir, dynamic_grid, monsters)}
+	correspondances = {"move" : lambda direction : move_entity(player, direction, dynamic_grid, static_grid), "get_pos_player" : lambda : pos(player), "get_pos_exit" : lambda : pos(exit), "attack" : lambda dir : entity_attack(player, dir, dynamic_grid, monsters)}
 	try:
 		exec(userCode, correspondances)
 	except Exception as e:
@@ -31,16 +31,17 @@ def codeJoueur(player, correspondances):
 #   -Fonction pour obtenir la position des ennemis
 #   -Fonction pour obtenir la position de la sortie
 
-def entitie_attack(entitie, dir, dynamic_grid, monsters):
-    GRID_SIZE = len(dynamic_grid)
-    position = entitie.pos.copy()
-    fireMove = {"up": [-1,0], "down": [1,0], "left": [0,-1], "right": [0,1]}
-    for i in range(entitie.range):
-        position[0] += fireMove[dir][0]
-        position[1] += fireMove[dir][1]
-        if position[0] >= GRID_SIZE or position[0] < 0 or position[1] >= GRID_SIZE or position[1] < 0:
-            break
-        if dynamic_grid[position[0]][position[1]] != None:
-            dynamic_grid[position[0]][position[1]].health_change(-entitie.attack)
-            if dynamic_grid[position[0]][position[1]].health <= 0:
-                dynamic_grid[position[0]][position[1]].kill(monsters, dynamic_grid)
+#def entity_attack(entity, dir, dynamic_grid, monsters):
+#    GRID_SIZE = len(dynamic_grid)
+#    position = entity.pos.copy()
+#    fireMove = {"up": [-1,0], "down": [1,0], "left": [0,-1], "right": [0,1]}
+#    for i in range(entity.range):
+#        position[0] += fireMove[dir][0]
+#        position[1] += fireMove[dir][1]
+#        if position[0] >= GRID_SIZE or position[0] < 0 or position[1] >= GRID_SIZE or position[1] < 0:
+#            break
+#        if dynamic_grid[position[0]][position[1]] != None:
+#            dynamic_grid[position[0]][position[1]].health_change(-entity.attack)
+#            if dynamic_grid[position[0]][position[1]].health <= 0:
+#                dynamic_grid[position[0]][position[1]].kill(monsters, dynamic_grid)
+#	entity.attacked = False
