@@ -60,7 +60,7 @@ class Game:
 				self.editor.is_submitted = False
 				self.reset_level()
 				self.is_code_running = True
-				self.correspondances = submit(self.player, self.editor.user_code, self.dynamic_grid)
+				self.correspondances = submit(self.player, self.editor.user_code, self.dynamic_grid, self.static_grid)
 			
 			for event in pygame.event.get():
 				if event.type == pygame.locals.QUIT:
