@@ -83,7 +83,7 @@ class Game:
 							self.reset_level()
 							self.is_code_running = False
 						
-						codeJoueur(self.player, self.correspondances)
+						codeJoueur(self.player, self.correspondances, self.static_grid)
 						if self.frame_counter % (3*self.turn_frames) == 0:
 							monster_pop(self.dynamic_grid, self.monsters)
 							update_monster_positions(self.dynamic_grid, self.static_grid, self.player)

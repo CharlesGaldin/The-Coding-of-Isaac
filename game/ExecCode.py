@@ -1,4 +1,5 @@
 from game.engine import move_entity , entity_attack
+from copy import deepcopy
 
 
 def submit(player, userCode, dynamic_grid, static_grid, exit, monsters):
@@ -26,9 +27,9 @@ def submit(player, userCode, dynamic_grid, static_grid, exit, monsters):
 	return correspondances
 
 
-def codeJoueur(player, correspondances):
+def codeJoueur(player, correspondances, static_grid):
 	try:
-		correspondances['turn']()
+		correspondances['turn'](deepcopy(static_grid))
 	except Exception as e:
 		print("Error during turn() execution", e)
 
