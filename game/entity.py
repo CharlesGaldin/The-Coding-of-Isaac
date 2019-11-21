@@ -1,3 +1,5 @@
+import game.engine as ge
+
 class Moving_Entity:
 	
 	def __init__(self , position , health , attack , artwork):
@@ -29,6 +31,21 @@ class Monster(Moving_Entity):
 	
 	def __init__(self , position , health , attack , artwork):
 		Moving_Entity.__init__(self , position ,  health , attack , artwork)
+
+	def move_towards_player(self,x_player,y_player,dynamic_grid):
+		if self.pos[1] < x_player:
+			ge.move_entity(self,'right',dynamic_grid)
+			print("monster moved right")
+		elif self.pos[1] > x_player:
+			ge.move_entity(self,'left',dynamic_grid)
+			print("monster moved left")
+		if self.pos[0] > y_player:
+			ge.move_entity(self,'up',dynamic_grid)
+			print("monster moved up")
+		elif self.pos[0] < y_player:
+			ge.move_entity(self,'down',dynamic_grid)
+			print("monster moved down")
+    			
 
 class Unmoving_Entity:
 

@@ -1,5 +1,6 @@
-from game.engine import init_grid, player_placement, monster_pop
+from game.engine import init_grid, player_placement, monster_pop, update_monster_positions, move_entity
 from game.level1 import init_grid_lv1
+from game.entity import Player, Monster
 
 import tkinter as tk
 import os
@@ -34,6 +35,10 @@ class Game:
 	def run(self):
 		running = True
 		frame_counter = 0
+		##A ENLEVER
+		#new_monster = Monster([5,0],10,10,'goomba')
+		#self.dynamic_grid[5][0] = new_monster
+		##
 		while running:
 			pygame.time.Clock().tick(60)
 			
@@ -48,11 +53,15 @@ class Game:
 			if frame_counter % 15 == 0 and self.editor.isSubmitted:
 				codeJoueur(self.player, self.editor.userCode, self.dynamic_grid)
 
-				if frame_counter % 240 == 0:
+				if frame_counter % 1 == 0:
 					monster_pop(self.dynamic_grid)
+					update_monster_positions(self.dynamic_grid,self.player.pos[1],self.player.pos[0])
+					print(self.dynamic_grid)
+					
 			
 			display_map(self.static_grid, self.window, 30, self.images, True)
 			display_map(self.dynamic_grid, self.window, 30, self.images, False)
+			
 
 			pygame.display.flip()
 			frame_counter += 1
