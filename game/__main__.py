@@ -23,7 +23,7 @@ def reset_entities(dynamic_grid): #protocole de mise à jour des entity.moved de
 
 class Game:
 	def __init__(self):
-		self.cur_level = 1
+		self.cur_level = 2
 		self.reset_level()
 		
 		self.editor = EditorSetUp()
@@ -44,7 +44,7 @@ class Game:
 		
 	
 	def reset_level(self):
-    	self.monsters=[]
+		self.monsters=[]
 		self.static_grid = level_grid(self.cur_level)
 		self.dynamic_grid = init_grid()
 		self.player = player_placement(self.dynamic_grid)
@@ -70,10 +70,9 @@ class Game:
 					running = False
 			
 			if self.is_code_running:
-				if frame_counter % 1 == 0:
+				if frame_counter % 15 == 0:
 					codeJoueur(self.player, self.correspondances)
-					
-					if frame_counter % 30 == 0:
+					if frame_counter % 45 == 0:
 						monster_pop(self.dynamic_grid, self.monsters)
 						update_monster_positions(self.dynamic_grid, self.static_grid, self.player.pos[1], self.player.pos[0])
 
