@@ -45,7 +45,7 @@ class Game:
 	
 	def reset_level(self):
 		self.monsters=[]
-		self.static_grid = level_grid(self.cur_level)
+		self.static_grid, self.exit = level_grid(self.cur_level)
 		self.dynamic_grid = init_grid()
 		self.player = player_placement(self.dynamic_grid)
 	

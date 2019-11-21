@@ -15,7 +15,7 @@ def level_grid(level):                   #creation de la grille de jeu du niveau
         for i in range(1,GRID_SIZE-1):
             grid[i][0] = Obstacle([i,0], 'wall_left')
             grid[i][GRID_SIZE-1] = Obstacle([i,GRID_SIZE-1], 'wall_right')
-        return grid
+        return grid, grid[GRID_SIZE-2][GRID_SIZE-2]
     elif level == 2:
         grid = init_grid()
         grid[GRID_SIZE//2][GRID_SIZE-2] = Objective([GRID_SIZE//2, GRID_SIZE-2], 'door')
@@ -31,4 +31,4 @@ def level_grid(level):                   #creation de la grille de jeu du niveau
             grid[i][GRID_SIZE-1] = Obstacle([i,GRID_SIZE-1], 'wall_right')
         for i in range(3,GRID_SIZE-3):
             grid[i][GRID_SIZE//2 + 2] = Obstacle([i, GRID_SIZE//2 + 2], 'rock')
-        return grid
+        return grid, grid[GRID_SIZE//2][GRID_SIZE-2]
