@@ -30,6 +30,7 @@ def load_images():
 	images['rock'] = pygame.image.load("assets/rock.png").convert()
 	images['goomba'] = pygame.image.load("assets/goomba.png").convert_alpha()
 	images['end_screen'] = pygame.image.load("assets/end_screen.gif").convert()
+	images['robot_hurt'] = pygame.image.load("assets/robot_hurt.png").convert_alpha()
 	return images
 
 

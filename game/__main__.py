@@ -47,6 +47,9 @@ class Game:
 		self.is_code_running = False
 		
 		self.turn_frames = 15
+
+		self.hurt_time_max = 10
+		self.hurt_time = self.hurt_time_max #temps pendant lequel le robot est blesse
 		
 	
 	def reset_level(self):
@@ -91,6 +94,13 @@ class Game:
 								print("You're dead")
 								self.reset_level()
 								self.is_code_running = False
+
+					if self.player.hurt:
+						self.hurt_time-=1
+						if self.hurt_time == 0:
+							self.player.hurt = False
+							self.player.artwork = 'robot'
+							self.hurt_time = self.hurt_time_max
 				
 				turn_fraction = (self.frame_counter % self.turn_frames) / self.turn_frames
 				display_grid(self.static_grid, self.dynamic_grid, self.window, TILE_SIZE, self.images, turn_fraction)

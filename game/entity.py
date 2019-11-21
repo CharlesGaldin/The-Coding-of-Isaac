@@ -32,6 +32,7 @@ class Player(Moving_Entity):
 
 	def __init__(self , position , health = 10 , attack = 2 , fire_range = 5):
 		super().__init__(position , health , attack , fire_range , "robot", tall_artwork = True)
+		self.hurt = False
 
 	def is_dead(self):
 		return self.health <= 0
@@ -65,6 +66,8 @@ class Monster(Moving_Entity):
 	def attack_player(self,player):
 		if (self.pos[0] == player.pos[0] and abs(self.pos[1]-player.pos[1]) == 1) or (self.pos[1] == player.pos[1] and abs(self.pos[0]-player.pos[0])==1):
 			player.health_change(-self.attack)
+			player.hurt = True
+			player.artwork = 'robot_hurt'
 			print("Vie : ",player.health)
     	
 	
