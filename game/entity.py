@@ -15,8 +15,9 @@ class Moving_Entity(Entity):
 		"""
 		super().__init__(position, artwork, tall_artwork)
 		self.health = health
-		self.moved = True
+		self.moved = False
 		self.attaked = True
+		self.last_movement = None
 		self.attack = attack
 		self.range = fire_range
 	

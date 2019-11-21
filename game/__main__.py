@@ -19,8 +19,9 @@ def reset_entities(dynamic_grid): #protocole de mise à jour des entity.moved de
 	for row in dynamic_grid:
 		for cell in row:
 			if cell != None:
-				cell.moved = True
+				cell.moved = False
 				cell.attacked = True
+				cell.last_movement = None
 
 class Game:
 	def __init__(self):
