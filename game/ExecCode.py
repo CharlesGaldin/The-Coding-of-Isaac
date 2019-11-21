@@ -4,15 +4,20 @@ from game.engine import move_entity , entity_attack
 def submit(player, userCode, dynamic_grid, static_grid, exit, monsters):
     	
 	def pos(entity):
-		return tuple(entity.pos)
+    		return (entity.pos[1], entity.pos[0])
 	
 	def pos_monster(monsters):
 		position=[]
-		for i in monsters:
-			position.append(tuple(i.pos))
+		for monster in monsters:
+			position.append(pos(monster))
 		return position
 			
-	correspondances = {"move" : lambda direction : move_entity(player, direction, dynamic_grid, static_grid), "get_pos_player" : lambda : pos(player), "get_pos_exit" : lambda : pos(exit), "attack" : lambda dir : entity_attack(player, dir, dynamic_grid, monsters)}
+	correspondances = {
+        "move": lambda direction: move_entity(player, direction, dynamic_grid, static_grid),
+        "get_pos_player": lambda: pos(player),
+        "get_pos_exit" : lambda: pos(exit),
+        "attack": lambda dir: entity_attack(player, dir, dynamic_grid, monsters)
+    }
 	try:
 		exec(userCode, correspondances)
 	except Exception as e:
