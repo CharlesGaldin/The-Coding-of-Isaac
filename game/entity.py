@@ -55,6 +55,9 @@ class Monster(Moving_Entity):
 				game.engine.move_entity(self,'up',dynamic_grid,static_grid)
 			elif self.pos[0] < y_player:
 				game.engine.move_entity(self,'down',dynamic_grid,static_grid)
+	
+	
+    	
 
 class Unmoving_Entity(Entity):
 	def __init__(self , position , artwork, tall_artwork = False):
