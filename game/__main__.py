@@ -77,6 +77,7 @@ class Game:
 						update_monster_positions(self.dynamic_grid, self.static_grid, self.player.pos[1], self.player.pos[0])
 			
 			if isinstance(self.static_grid[self.player.pos[0]][self.player.pos[1]], Objective):
+				self.is_code_running = False
 				self.cur_level += 1
 				print(f"Congratulations! Onto level {self.cur_level}!")
 				self.reset_level()
