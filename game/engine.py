@@ -60,9 +60,6 @@ def move_entity(entity, direction, dynamic_grid, static_grid):
 				dynamic_grid[pos[0]][pos[1]] = None
 		else:
 			raise NameError('Attribute not recogized, please choose between "right", "left", "up" and "down"')
-		if isinstance(static_grid[entity.pos[0]][entity.pos[1]], Objective):
-				if isinstance(dynamic_grid[entity.pos[0]][entity.pos[1]], Player):   #JEU FINI ! Le player est sur la porte
-					print('You win ! Next level ?')
 	else:
 		if isinstance(entity, Player):
 			print('You already moved this turn')

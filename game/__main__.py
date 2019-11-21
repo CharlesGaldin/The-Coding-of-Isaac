@@ -1,6 +1,6 @@
 from game.engine import init_grid, player_placement, monster_pop, update_monster_positions, move_entity
 from game.levels import level_grid
-from game.entity import Moving_Entity
+from game.entity import Objective
 
 import tkinter as tk
 import os
@@ -16,14 +16,14 @@ from game.ExecCode import codeJoueur, submit
 TILE_SIZE = 32
 
 def reset_entities(dynamic_grid): #protocole de mise à jour des entity.moved de toutes les entités ayant fait leur tour
-	for i in range(len(dynamic_grid)):
-		for j in range(len(dynamic_grid[0])):
-			if isinstance(dynamic_grid[i][j], Moving_Entity):
-				dynamic_grid[i][j].moved = True
+	for row in dynamic_grid:
+		for cell in row:
+			if cell != None:
+				cell.moved = True
 
 class Game:
 	def __init__(self):
-		self.cur_level = 2
+		self.cur_level = 1
 		self.reset_level()
 		
 		self.editor = EditorSetUp()
@@ -75,7 +75,11 @@ class Game:
 					if frame_counter % 45 == 0:
 						monster_pop(self.dynamic_grid, self.monsters)
 						update_monster_positions(self.dynamic_grid, self.static_grid, self.player.pos[1], self.player.pos[0])
-
+			
+			if isinstance(self.static_grid[self.player.pos[0]][self.player.pos[1]], Objective):
+				self.cur_level += 1
+				print(f"Congratulations! Onto level {self.cur_level}!")
+				self.reset_level()
 			
 			display_grid(self.static_grid, self.dynamic_grid, self.window, TILE_SIZE, self.images)
 			
