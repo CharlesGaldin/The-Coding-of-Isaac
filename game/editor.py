@@ -28,13 +28,13 @@ Available functions: move('up'), move ('down'), move('left'), move('right) and  
 		
 		self.master.protocol("WM_DELETE_WINDOW", request_exit)
 
-		self.userCode = ""
+		self.user_code = ""
 
-		self.isSubmitted = False
+		self.is_submitted = False
 
 	def submit(self):
-		self.userCode = self.text.get("1.0", tk.END)
-		self.isSubmitted = True
+		self.user_code = self.text.get("1.0", tk.END)
+		self.is_submitted = True
 		print("Submitted !")
 	
 	def update(self):

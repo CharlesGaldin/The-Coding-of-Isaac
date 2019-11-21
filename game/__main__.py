@@ -14,9 +14,7 @@ from game.ExecCode import codeJoueur, submit
 
 class Game:
 	def __init__(self):
-		self.static_grid = init_grid_lv1()
-		self.dynamic_grid = init_grid()
-		self.player = player_placement(self.dynamic_grid)
+		self.reset_level()
 		
 		self.editor = EditorSetUp()
 		
@@ -32,11 +30,16 @@ class Game:
 		self.images = load_images()
 
 		self.correspondances = None
+		self.is_code_running = False
+	
+	def reset_level(self):
+		self.static_grid = init_grid_lv1()
+		self.dynamic_grid = init_grid()
+		self.player = player_placement(self.dynamic_grid)
 	
 	def run(self):
 		running = True
 		frame_counter = 0
-		isCompiled = False
 		while running:
 			pygame.time.Clock().tick(60)
 			
@@ -44,20 +47,22 @@ class Game:
 			if self.editor.exit_requested:
 				running = False
 			
+			if self.editor.is_submitted:
+				self.editor.is_submitted = False
+				self.reset_level()
+				self.is_code_running = True
+				self.correspondances = submit(self.player, self.editor.user_code, self.dynamic_grid)
+			
 			for event in pygame.event.get():
 				if event.type == pygame.locals.QUIT:
 					running = False
-
-			if frame_counter % 15 == 0:
-				if self.editor.isSubmitted and not isCompiled:
-					isCompiled = True
-					self.correspondances = submit(self.player, self.editor.userCode, self.dynamic_grid)
-				
-				if self.editor.isSubmitted and isCompiled:
+			
+			if self.is_code_running:
+				if frame_counter % 15 == 0:
 					codeJoueur(self.player, self.correspondances)
-
-				if frame_counter % 240 == 0:
-					monster_pop(self.dynamic_grid)
+					
+					if frame_counter % 240 == 0:
+						monster_pop(self.dynamic_grid)
 			
 			display_map(self.static_grid, self.window, 30, self.images, True)
 			display_map(self.dynamic_grid, self.window, 30, self.images, False)
