@@ -1,5 +1,5 @@
-from game.engine import init_grid, player_placement, monster_pop
-from game.Levels.level1 import init_grid_lv1
+from game.engine import init_grid, player_placement, monster_pop, update_monster_positions, move_entity
+from game.levels.level1 import init_grid_lv1
 from game.entity import Moving_Entity
 
 import tkinter as tk
@@ -9,7 +9,7 @@ from game.editor import EditorSetUp
 
 import pygame
 import pygame.locals
-from game.graphics import get_window_size, create_window, load_images, display_map
+from game.graphics import get_window_size, create_window, load_images, display_grid
 
 from game.ExecCode import codeJoueur, submit
 
@@ -70,11 +70,12 @@ class Game:
 				if frame_counter % 15 == 0:
 					codeJoueur(self.player, self.correspondances)
 					
-					if frame_counter % 240 == 0:
+					if frame_counter % 30 == 0:
 						monster_pop(self.dynamic_grid)
+						update_monster_positions(self.dynamic_grid, self.static_grid, self.player.pos[1], self.player.pos[0])
+
 			
-			display_map(self.static_grid, self.window, TILE_SIZE, self.images, True)
-			display_map(self.dynamic_grid, self.window, TILE_SIZE, self.images, False)
+			display_grid(self.static_grid, self.dynamic_grid, self.window, TILE_SIZE, self.images)
 			
 			pygame.display.flip()
 			reset_entities(self.dynamic_grid)
