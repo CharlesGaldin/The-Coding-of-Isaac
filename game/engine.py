@@ -79,7 +79,7 @@ def update_monster_positions(dynamic_grid,static_grid,player):
 def entity_attack(entity, dir, dynamic_grid, monsters):
 	GRID_SIZE = len(dynamic_grid)
 	position = entity.pos.copy()
-	if entity.attacked == True:    #vérification que le joueur n'a pas déjà attaqué ce tour là
+	if not entity.attacked:    #vérification que le joueur n'a pas déjà attaqué ce tour là
 		if dir in DIRECTIONS:
 			for i in range(entity.range):
 				position[0] += DIRECTIONS[dir][0]
@@ -90,7 +90,7 @@ def entity_attack(entity, dir, dynamic_grid, monsters):
 					dynamic_grid[position[0]][position[1]].health_change(-entity.attack)
 					if dynamic_grid[position[0]][position[1]].health <= 0:
 						dynamic_grid[position[0]][position[1]].kill(monsters, dynamic_grid)
-			entity.attacked = False
+			entity.attacked = True
 		else:
 			raise NameError('Attribute not recogized, please choose between "right", "left", "up" and "down"')
 	else:
