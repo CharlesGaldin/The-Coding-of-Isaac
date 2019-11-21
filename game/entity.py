@@ -1,14 +1,20 @@
-import game.engine as ge
+import game.engine
+import random
 
-class Moving_Entity:
+class Entity:
+	def __init__(self, position, artwork, tall_artwork = False):
+		self.pos = position
+		self.artwork = artwork
+		self.tall_artwork = tall_artwork
+
+class Moving_Entity(Entity):
 	
-	def __init__(self , position , health , attack , fire_range , artwork):
+	def __init__(self , position , health , attack , fire_range , artwork , tall_artwork = False):
 		"""
 		position de la forme : [pos_y , pos_x]
 		"""
+		super().__init__(position, artwork, tall_artwork)
 		self.health = health
-		self.pos = position
-		self.artwork = artwork
 		self.moved = True
 		self.attack = attack
 		self.range = fire_range
@@ -23,42 +29,38 @@ class Moving_Entity:
 class Player(Moving_Entity):
 
 	def __init__(self , position , health = 10 , attack = 2 , fire_range = 5):
-		Moving_Entity.__init__(self , position , health , attack , fire_range , "robot")
+		super().__init__(position , health , attack , fire_range , "robot", tall_artwork = True)
 
 class Monster(Moving_Entity):
 	
 	def __init__(self , position , health , attack , artwork , fire_range = 1 ):
-		Moving_Entity.__init__(self , position ,  health , attack , fire_range , artwork )
+		super().__init__(position ,  health , attack , fire_range , artwork )
 
-	def move_towards_player(self,x_player,y_player,dynamic_grid):
-		if self.pos[1] < x_player:
-			ge.move_entity(self,'right',dynamic_grid)
-			print("monster moved right")
-		elif self.pos[1] > x_player:
-			ge.move_entity(self,'left',dynamic_grid)
-			print("monster moved left")
-		if self.pos[0] > y_player:
-			ge.move_entity(self,'up',dynamic_grid)
-			print("monster moved up")
-		elif self.pos[0] < y_player:
-			ge.move_entity(self,'down',dynamic_grid)
-			print("monster moved down")
-    			
+	def move_towards_player(self,x_player,y_player,dynamic_grid,static_grid):
+		if random.random() > 1/2:
+			if self.pos[1] < x_player:
+				game.engine.move_entity(self,'right',dynamic_grid,static_grid)
+			elif self.pos[1] > x_player:
+				game.engine.move_entity(self,'left',dynamic_grid,static_grid)
+		else:
+			if self.pos[0] > y_player:
+				game.engine.move_entity(self,'up',dynamic_grid,static_grid)
+			elif self.pos[0] < y_player:
+				game.engine.move_entity(self,'down',dynamic_grid,static_grid)
+				
 
-class Unmoving_Entity:
-
-	def __init__(self , position , artwork):
+class Unmoving_Entity(Entity):
+	def __init__(self , position , artwork, tall_artwork = False):
 		"""
 		position de la forme : [pos_y , pos_x]
 		"""
-		self.position = position
-		self.artwork = artwork
+		super().__init__(position, artwork, tall_artwork)
 
 class Objective(Unmoving_Entity):
-    		
+			
 	def __init__(self , position , artwork):
-		Unmoving_Entity.__init__(self , position , artwork)
+		super().__init__(position , artwork, tall_artwork = True)
 
 class Obstacle(Unmoving_Entity):
 	def __init__(self  , position , artwork):
-		Unmoving_Entity.__init__(self , position , artwork)
+		super().__init__(position , artwork)

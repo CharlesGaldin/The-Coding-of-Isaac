@@ -1,1 +1,1 @@
-Everyone can contribute, ther is much to do !
+Anyone can contribute, there is much to do!

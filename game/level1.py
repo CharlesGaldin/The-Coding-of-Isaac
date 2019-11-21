@@ -1,7 +1,7 @@
 from game.engine import init_grid, GRID_SIZE
 from game.entity import Objective, Obstacle
 
-def init_grid_lv1():
+def init_grid_lv1(): #creation de la grille de jeu du level 1
     grid_lv1 = init_grid()
     grid_lv1[GRID_SIZE-2][GRID_SIZE-2] = Objective([GRID_SIZE-2, GRID_SIZE-2], 'door')
     grid_lv1[0][0] = Obstacle([0,0], 'wall_upper_left_corner')
