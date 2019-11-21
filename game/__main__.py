@@ -74,8 +74,11 @@ class Game:
 					self.editor.is_submitted = False
 					self.reset_level()
 					self.is_code_running = True
-					self.correspondances = submit(self.player, self.editor.user_code, self.dynamic_grid, self.static_grid, self.exit, self.monsters)
-				
+					try:
+						self.correspondances = submit(self.player, self.editor.user_code, self.dynamic_grid, self.static_grid, self.exit, self.monsters)
+					except Exception as e:
+						self.editor.error_box(str(e))
+						self.is_code_running = False
 				if self.is_code_running:
 					if self.frame_counter % self.turn_frames == 0:
 						reset_entities(self.dynamic_grid)
