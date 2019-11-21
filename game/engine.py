@@ -14,7 +14,7 @@ def player_placement(dynamic_grid): #place le joueur au début de la partie
 def update(dynamic_grid):  #ne fait rien et ne sert a rien pour l'instant, à développer
 	pass
 
-def move_entity(entity, direction, dynamic_grid):
+def move_entity(entity, direction, dynamic_grid, static_grid):
 	"""
 	INPUT: 
 		prend en arg une entity, un string et la grille dynamique
@@ -27,7 +27,7 @@ def move_entity(entity, direction, dynamic_grid):
 	if entity.moved == True:  #verification que le joueur n'ai pas déja bougé ce tour là
 		pos = [entity.pos[0],entity.pos[1]]
 		if direction == 'up':
-			if pos[0]==1 or dynamic_grid[pos[0]-1][pos[1]] != None:
+			if pos[0]==1 or dynamic_grid[pos[0]-1][pos[1]] != None or isinstance(static_grid[pos[0]-1][pos[1]], Obstacle) == True:
 				pass
 			else:
 				entity.pos[0] -= 1
@@ -35,7 +35,7 @@ def move_entity(entity, direction, dynamic_grid):
 				dynamic_grid[pos[0]][pos[1]] = None
 				entity.move = False
 		elif direction == 'down':
-			if pos[0] == GRID_SIZE-2 or dynamic_grid[pos[0]+1][pos[1]] != None:
+			if pos[0] == GRID_SIZE-2 or dynamic_grid[pos[0]+1][pos[1]] != None or isinstance(static_grid[pos[0]+1][pos[1]], Obstacle) == True:
 				pass
 			else:
 				entity.pos[0] += 1
@@ -43,7 +43,7 @@ def move_entity(entity, direction, dynamic_grid):
 				dynamic_grid[entity.pos[0]][entity.pos[1]] = dynamic_grid[pos[0]][pos[1]]
 				dynamic_grid[pos[0]][pos[1]] = None
 		elif direction == 'left':
-			if pos[1]==1 or dynamic_grid[pos[0]][pos[1]-1] != None:
+			if pos[1]==1 or dynamic_grid[pos[0]][pos[1]-1] != None or isinstance(static_grid[pos[0][pos[1]-1], Obstacle) == True:
 				pass
 			else:
 				entity.pos[1] -= 1
@@ -51,7 +51,7 @@ def move_entity(entity, direction, dynamic_grid):
 				dynamic_grid[entity.pos[0]][entity.pos[1]] = dynamic_grid[pos[0]][pos[1]]
 				dynamic_grid[pos[0]][pos[1]] = None
 		elif direction == 'right':
-			if pos[1]==GRID_SIZE-2 or dynamic_grid[pos[0]][pos[1]+1] != None:
+			if pos[1]==GRID_SIZE-2 or dynamic_grid[pos[0]][pos[1]+1] != None or isinstance(static_grid[pos[0][pos[1]+1], Obstacle) == True:
 				pass
 			else:
 				entity.pos[1] += 1
@@ -84,4 +84,3 @@ def monster_pop(dynamic_grid):  #fait pop aléatoirement des goompas sur les bor
 	new_monster = Monster([y,x],10,10,'goomba')
 	dynamic_grid[y][x] = new_monster
 	
-		
