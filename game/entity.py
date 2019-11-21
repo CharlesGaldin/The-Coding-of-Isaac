@@ -32,9 +32,17 @@ class Player(Moving_Entity):
 		super().__init__(position , health , attack , fire_range , "robot", tall_artwork = True)
 
 class Monster(Moving_Entity):
-    	
+    
 	def __init__(self , position , health , attack , artwork , fire_range = 1 ):
 		super().__init__(position ,  health , attack , fire_range , artwork )
+	def kill(self, monstersList, dynamic_grid):
+		i = 0
+		while i < len(monstersList):
+			if monstersList[i] == self:
+				monstersList.pop(i)
+				break
+			i += 1
+		dynamic_grid[self.pos[0]][self.pos[1]] = None
 
 	def move_towards_player(self,x_player,y_player,dynamic_grid,static_grid):
 		if random.random() > 1/2:
@@ -47,12 +55,9 @@ class Monster(Moving_Entity):
 				game.engine.move_entity(self,'up',dynamic_grid,static_grid)
 			elif self.pos[0] < y_player:
 				game.engine.move_entity(self,'down',dynamic_grid,static_grid)
-
-	def attack_player(self,player):
-		if (player.pos[0] == self.pos[0] and abs(player.pos[1]-self.pos[1]) == 1) or (player.pos[1]==self.pos[1] and abs(player.pos[0]-self.pos[0]) == 1):
-			player.health-=1
-			print("Vie :",player.health)
-				
+	
+	
+    	
 
 class Unmoving_Entity(Entity):
 	def __init__(self , position , artwork, tall_artwork = False):
@@ -62,10 +67,12 @@ class Unmoving_Entity(Entity):
 		super().__init__(position, artwork, tall_artwork)
 
 class Objective(Unmoving_Entity):
-			
+
 	def __init__(self , position , artwork):
 		super().__init__(position , artwork, tall_artwork = True)
 
 class Obstacle(Unmoving_Entity):
+	instances_Obstacle = []
+
 	def __init__(self  , position , artwork):
 		super().__init__(position , artwork)

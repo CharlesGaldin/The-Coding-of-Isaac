@@ -1,6 +1,6 @@
 from game.engine import init_grid, player_placement, monster_pop, update_monster_positions, move_entity
-from game.levels.level1 import init_grid_lv1
-from game.entity import Moving_Entity
+from game.levels import level_grid
+from game.entity import Objective
 
 import tkinter as tk
 import os
@@ -16,13 +16,14 @@ from game.ExecCode import codeJoueur, submit
 TILE_SIZE = 32
 
 def reset_entities(dynamic_grid): #protocole de mise à jour des entity.moved de toutes les entités ayant fait leur tour
-	for i in range(len(dynamic_grid)):
-		for j in range(len(dynamic_grid[0])):
-			if isinstance(dynamic_grid[i][j], Moving_Entity):
-				dynamic_grid[i][j].moved = True
+	for row in dynamic_grid:
+		for cell in row:
+			if cell != None:
+				cell.moved = True
 
 class Game:
 	def __init__(self):
+		self.cur_level = 1
 		self.reset_level()
 		
 		self.editor = EditorSetUp()
@@ -40,9 +41,11 @@ class Game:
 
 		self.correspondances = None
 		self.is_code_running = False
+		
 	
 	def reset_level(self):
-		self.static_grid = init_grid_lv1()
+		self.monsters=[]
+		self.static_grid, self.exit = level_grid(self.cur_level)
 		self.dynamic_grid = init_grid()
 		self.player = player_placement(self.dynamic_grid)
 	
@@ -60,7 +63,7 @@ class Game:
 				self.editor.is_submitted = False
 				self.reset_level()
 				self.is_code_running = True
-				self.correspondances = submit(self.player, self.editor.user_code, self.dynamic_grid, self.static_grid)
+				self.correspondances = submit(self.player, self.editor.user_code, self.dynamic_grid, self.static_grid, self.exit, self.monsters)
 			
 			for event in pygame.event.get():
 				if event.type == pygame.locals.QUIT:
@@ -69,10 +72,15 @@ class Game:
 			if self.is_code_running:
 				if frame_counter % 15 == 0:
 					codeJoueur(self.player, self.correspondances)
-					if frame_counter % 30 == 0:
-						monster_pop(self.dynamic_grid)
-						update_monster_positions(self.dynamic_grid, self.static_grid, self.player)
-
+					if frame_counter % 45 == 0:
+    						monster_pop(self.dynamic_grid, self.monsters)
+						update_monster_positions(self.dynamic_grid, self.static_grid, self.player.pos[1], self.player.pos[0])
+			
+			if isinstance(self.static_grid[self.player.pos[0]][self.player.pos[1]], Objective):
+				self.is_code_running = False
+				self.cur_level += 1
+				print(f"Congratulations! Onto level {self.cur_level}!")
+				self.reset_level()
 			
 			display_grid(self.static_grid, self.dynamic_grid, self.window, TILE_SIZE, self.images)
 			
