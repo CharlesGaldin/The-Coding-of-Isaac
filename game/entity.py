@@ -24,9 +24,14 @@ class Player(Moving_Entity):
 		Moving_Entity.__init__(self , position , health , attack , fire_range , "robot")
 
 class Monster(Moving_Entity):
-	
+	instances_Monster = []
+
 	def __init__(self , position , health , attack , artwork , fire_range = 1 ):
 		Moving_Entity.__init__(self , position ,  health , attack , fire_range , artwork )
+		self.instances_monster.append(self)
+	
+	def __del__(self):
+	  	self.instances.remove(self)
 
 class Unmoving_Entity:
 
@@ -34,14 +39,19 @@ class Unmoving_Entity:
 		"""
 		position de la forme : [pos_y , pos_x]
 		"""
-		self.position = position
+		self.pos = position
 		self.artwork = artwork
 
 class Objective(Unmoving_Entity):
-    		
+	instances_Objective = []
+
 	def __init__(self , position , artwork):
 		Unmoving_Entity.__init__(self , position , artwork)
+		self.instances_objective.append(self)
 
 class Obstacle(Unmoving_Entity):
+	instances_Obstacle = []
+
 	def __init__(self  , position , artwork):
 		Unmoving_Entity.__init__(self , position , artwork)
+		self.instances_objective.append(self)

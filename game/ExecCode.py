@@ -1,10 +1,15 @@
 from game.engine import move_entity
+for game.entity import Monster , Objective
 
 def submit(player, userCode, dynamic_grid):
-    def pos() :
-        p = player.pos()
-        return tuple(p)
-    correspondances = {"move" : lambda direction : move_entity(player, direction, dynamic_grid), "getPos" : lambda : pos, "attack" : lambda dir : entitie_attack(player, dir, dynamic_grid)}
+    
+    def pos_player(entity) :
+        return tuple(entity.pos)
+    
+    def pos_monster(instances_monster):
+
+    
+    correspondances = {"move" : lambda direction : move_entity(player, direction, dynamic_grid), "get_pos_player" : lambda : pos_player(player), "get_pos_monster" : lambda : pos_monster(ins) "attack" : lambda dir : entitie_attack(player, dir, dynamic_grid)}
     try:
     	exec(userCode, correspondances)
     except Exception as e:

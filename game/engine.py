@@ -19,9 +19,9 @@ def move_entity(entity, direction, dynamic_grid):
 	INPUT: 
 		prend en arg une entity, un string et la grille dynamique
 	OUTPUT:
-		mets a jour la grille dynamique et la position du joueur
+		mets à jour la grille dynamique et la position du joueur
 	RETURN:
-		uniquement en cas d erreur, renvoie l erreur rencontrée
+		uniquement en cas d'erreur, renvoie l'erreur rencontrée
 	"""
 	
 	if entity.moved == True:
