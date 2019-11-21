@@ -1,8 +1,0 @@
-Packages needed :
-
-tKinter
-OS
-platform
-pygames
-pygames.locals
-random
