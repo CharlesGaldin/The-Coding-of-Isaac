@@ -28,7 +28,7 @@ class Monster(Moving_Entity):
 
 	def __init__(self , position , health , attack , artwork , fire_range = 1 ):
 		Moving_Entity.__init__(self , position ,  health , attack , fire_range , artwork )
-		self.instances_monster.append(self)
+		self.instances_Monster.append(self)
 	
 	def __del__(self):
 	  	self.instances.remove(self)
@@ -47,11 +47,11 @@ class Objective(Unmoving_Entity):
 
 	def __init__(self , position , artwork):
 		Unmoving_Entity.__init__(self , position , artwork)
-		self.instances_objective.append(self)
+		self.instances_Objective.append(self)
 
 class Obstacle(Unmoving_Entity):
 	instances_Obstacle = []
 
 	def __init__(self  , position , artwork):
 		Unmoving_Entity.__init__(self , position , artwork)
-		self.instances_objective.append(self)
+		self.instances_Obstacle.append(self)

@@ -14,5 +14,5 @@ def init_grid_lv1():
     for i in range(1,GRID_SIZE-1):
         grid_lv1[i][0] = Obstacle([i,0], 'wall_left')
         grid_lv1[i][GRID_SIZE-1] = Obstacle([i,GRID_SIZE-1], 'wall_right')
-    return grid_lv1
+    return grid_lv1 , None
 
