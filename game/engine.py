@@ -64,7 +64,8 @@ def move_entity(entity, direction, dynamic_grid, static_grid):
 				if isinstance(dynamic_grid[entity.pos[0]][entity.pos[1]], Player):   #JEU FINI ! Le player est sur la porte
 					print('You win ! Next level ?')
 	else:
-		print('You already moved this turn')
+		if isinstance(entity, Player):
+			print('You already moved this turn')
 
 #def fire(pos, dynamic_grid):
 	#if entity.attack == True:
