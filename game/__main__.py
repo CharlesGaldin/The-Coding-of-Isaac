@@ -69,9 +69,9 @@ class Game:
 					running = False
 			
 			if self.is_code_running:
-				if frame_counter % 1 == 0:
+				if frame_counter % 15 == 0:
 					codeJoueur(self.player, self.correspondances)
-					if frame_counter % 1 == 0:
+					if frame_counter % 45 == 0:
 						monster_pop(self.dynamic_grid)
 						update_monster_positions(self.dynamic_grid, self.static_grid, self.player.pos[1], self.player.pos[0])
 
