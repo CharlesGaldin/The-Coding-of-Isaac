@@ -22,7 +22,7 @@ def submit(player, userCode, dynamic_grid, static_grid, exit, monsters):
 		check_import(userCode)
 		exec(userCode, correspondances)
 	except Exception as e:
-		print("Error on first code execution:", e)
+		raise (e)
 	return correspondances
 
 

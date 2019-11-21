@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 
 class EditorSetUp:
 	def __init__(self):
@@ -44,6 +45,9 @@ def turn():
 	
 	def update(self):
 		self.master.update()
+	
+	def error_box(self, error):
+		messagebox.showerror("Error", error)
 	
 	def close(self):
 		self.master.destroy()
