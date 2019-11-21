@@ -13,7 +13,7 @@ class EditorSetUp:
 
 		self.text = tk.Text(self.editor)
 		self.text.insert(tk.INSERT, """try editing !
-Available functions: move('up'), move ('down'), move('left'), move('right) and  getPos().""")
+Available functions: move('up'), move ('down'), move('left'), move('right) and  get_pos().""")
 		self.text.pack()
 		
 		self.close_button = tk.Button(self.editor, text="Submit", command=self.submit)
