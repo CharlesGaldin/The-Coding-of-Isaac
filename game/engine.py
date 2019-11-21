@@ -20,7 +20,7 @@ def move_entity(entity, direction, dynamic_grid, static_grid):
 	INPUT: 
 		prend en arg une entity, un string et la grille dynamique
 	OUTPUT:
-		mets a jour la grille dynamique et la position du joueur
+		mets à jour la grille dynamique et la position du joueur
 	RETURN:
 		uniquement en cas d'erreur, renvoie l'erreur rencontrée
 	"""
@@ -72,7 +72,7 @@ def move_entity(entity, direction, dynamic_grid, static_grid):
 	#	else:
 	#		pass
 
-def monster_pop(dynamic_grid):  #fait pop aléatoirement des goompas sur les bors de la map
+def monster_pop(dynamic_grid,monsters):
 	cote = random.randint(0,3)
 	case = random.randint(1,GRID_SIZE-2)
 	if cote == 0: #haut
@@ -85,10 +85,10 @@ def monster_pop(dynamic_grid):  #fait pop aléatoirement des goompas sur les bor
 		x,y = GRID_SIZE-1,case
 	new_monster = Monster([y,x],10,10,'goomba')
 	dynamic_grid[y][x] = new_monster
-
+	monsters.append(new_monster)
 	
 def update_monster_positions(dynamic_grid,static_grid,x_player,y_player):
-    	#dynamic_grid_copy = [[cell for cell in row] for row in dynamic_grid]
+		#dynamic_grid_copy = [[cell for cell in row] for row in dynamic_grid]
 	for i in range(GRID_SIZE):
 		for j in range(GRID_SIZE):
 			case = dynamic_grid[i][j]

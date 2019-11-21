@@ -42,7 +42,8 @@ class Game:
 		self.is_code_running = False
 	
 	def reset_level(self):
-		self.static_grid = init_grid_lv1()
+		self.monsters = []
+		self.static_grid, self.exit = init_grid_lv1()
 		self.dynamic_grid = init_grid()
 		self.player = player_placement(self.dynamic_grid)
 	
@@ -60,7 +61,7 @@ class Game:
 				self.editor.is_submitted = False
 				self.reset_level()
 				self.is_code_running = True
-				self.correspondances = submit(self.player, self.editor.user_code, self.dynamic_grid, self.static_grid)
+				self.correspondances = submit(self.player, self.editor.user_code, self.dynamic_grid, self.static_grid, self.exit, self.monsters)
 			
 			for event in pygame.event.get():
 				if event.type == pygame.locals.QUIT:
@@ -71,7 +72,7 @@ class Game:
 					codeJoueur(self.player, self.correspondances)
 					
 					if frame_counter % 30 == 0:
-						monster_pop(self.dynamic_grid)
+						monster_pop(self.dynamic_grid, self.monsters)
 						update_monster_positions(self.dynamic_grid, self.static_grid, self.player.pos[1], self.player.pos[0])
 
 			

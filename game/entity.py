@@ -32,7 +32,7 @@ class Player(Moving_Entity):
 		super().__init__(position , health , attack , fire_range , "robot", tall_artwork = True)
 
 class Monster(Moving_Entity):
-	
+
 	def __init__(self , position , health , attack , artwork , fire_range = 1 ):
 		super().__init__(position ,  health , attack , fire_range , artwork )
 
@@ -62,5 +62,7 @@ class Objective(Unmoving_Entity):
 		super().__init__(position , artwork, tall_artwork = True)
 
 class Obstacle(Unmoving_Entity):
+	instances_Obstacle = []
+
 	def __init__(self  , position , artwork):
 		super().__init__(position , artwork)
