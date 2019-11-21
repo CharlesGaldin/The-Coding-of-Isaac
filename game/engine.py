@@ -43,7 +43,7 @@ def move_entity(entity, direction, dynamic_grid, static_grid):
 				dynamic_grid[entity.pos[0]][entity.pos[1]] = dynamic_grid[pos[0]][pos[1]]
 				dynamic_grid[pos[0]][pos[1]] = None
 		elif direction == 'left':
-			if pos[1]==1 or dynamic_grid[pos[0]][pos[1]-1] != None or isinstance(static_grid[pos[0][pos[1]-1], Obstacle) == True:
+			if pos[1]==1 or dynamic_grid[pos[0]][pos[1]-1] != None or isinstance(static_grid[pos[0]][pos[1]-1], Obstacle) == True:
 				pass
 			else:
 				entity.pos[1] -= 1
@@ -51,7 +51,7 @@ def move_entity(entity, direction, dynamic_grid, static_grid):
 				dynamic_grid[entity.pos[0]][entity.pos[1]] = dynamic_grid[pos[0]][pos[1]]
 				dynamic_grid[pos[0]][pos[1]] = None
 		elif direction == 'right':
-			if pos[1]==GRID_SIZE-2 or dynamic_grid[pos[0]][pos[1]+1] != None or isinstance(static_grid[pos[0][pos[1]+1], Obstacle) == True:
+			if pos[1]==GRID_SIZE-2 or dynamic_grid[pos[0]][pos[1]+1] != None or isinstance(static_grid[pos[0]][pos[1]+1], Obstacle) == True:
 				pass
 			else:
 				entity.pos[1] += 1
