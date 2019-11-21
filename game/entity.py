@@ -16,6 +16,7 @@ class Moving_Entity(Entity):
 		super().__init__(position, artwork, tall_artwork)
 		self.health = health
 		self.moved = True
+		self.attaked = True
 		self.attack = attack
 		self.range = fire_range
 	
@@ -35,6 +36,7 @@ class Monster(Moving_Entity):
     
 	def __init__(self , position , health , attack , artwork , fire_range = 1 ):
 		super().__init__(position ,  health , attack , fire_range , artwork )
+		
 	def kill(self, monstersList, dynamic_grid):
 		i = 0
 		while i < len(monstersList):
