@@ -87,12 +87,13 @@ def monster_pop(dynamic_grid):  #fait pop aléatoirement des goompas sur les bor
 	dynamic_grid[y][x] = new_monster
 
 	
-def update_monster_positions(dynamic_grid,static_grid,x_player,y_player):
+def update_monster_positions(dynamic_grid,static_grid,player):
     	#dynamic_grid_copy = [[cell for cell in row] for row in dynamic_grid]
 	for i in range(GRID_SIZE):
 		for j in range(GRID_SIZE):
 			case = dynamic_grid[i][j]
 			if case != None and case.artwork == 'goomba':
-				case.move_towards_player(x_player,y_player,dynamic_grid,static_grid)
+				case.move_towards_player(player.pos[1],player.pos[0],dynamic_grid,static_grid)
+				case.attack_player(player)
 	#dynamic_grid = [[cell for cell in row] for row in dynamic_grid_copy]
 		
