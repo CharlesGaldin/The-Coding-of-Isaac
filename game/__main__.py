@@ -1,5 +1,5 @@
 from game.engine import init_grid, player_placement, monster_pop, update_monster_positions, move_entity
-from game.levels import level_grid
+from game.levels import level_grid, LAST_LEVEL
 from game.entity import Objective
 
 import tkinter as tk
@@ -9,7 +9,7 @@ from game.editor import EditorSetUp
 
 import pygame
 import pygame.locals
-from game.graphics import get_window_size, create_window, load_images, display_grid
+from game.graphics import get_window_size, create_window, load_images, load_font, display_grid, display_end_screen
 
 from game.ExecCode import codeJoueur, submit
 
@@ -23,7 +23,7 @@ def reset_entities(dynamic_grid): #protocole de mise à jour des entity.moved de
 
 class Game:
 	def __init__(self):
-		self.cur_level = 1
+		self.cur_level = 2
 		self.reset_level()
 		
 		self.editor = EditorSetUp()
@@ -37,13 +37,16 @@ class Game:
 			os.environ['SDL_VIDEODRIVER'] = 'windib'
 		self.window = create_window(self.static_grid, TILE_SIZE)
 		
+		pygame.init()
 		self.images = load_images()
+		load_font()
 
 		self.correspondances = None
 		self.is_code_running = False
 		
 	
 	def reset_level(self):
+		if self.cur_level > LAST_LEVEL: return
 		self.monsters=[]
 		self.static_grid, self.exit = level_grid(self.cur_level)
 		self.dynamic_grid = init_grid()
@@ -59,33 +62,33 @@ class Game:
 			if self.editor.exit_requested:
 				running = False
 			
-			if self.editor.is_submitted:
-				self.editor.is_submitted = False
-				self.reset_level()
-				self.is_code_running = True
-				self.correspondances = submit(self.player, self.editor.user_code, self.dynamic_grid, self.static_grid, self.exit, self.monsters)
-			
-			for event in pygame.event.get():
-				if event.type == pygame.locals.QUIT:
-					running = False
-			
-			if self.is_code_running:
-				if frame_counter % 15 == 0:
-					codeJoueur(self.player, self.correspondances)
-					if frame_counter % 45 == 0:
-						monster_pop(self.dynamic_grid, self.monsters)
-						update_monster_positions(self.dynamic_grid, self.static_grid, self.player.pos[1], self.player.pos[0])
-			
-			if isinstance(self.static_grid[self.player.pos[0]][self.player.pos[1]], Objective):
-				self.is_code_running = False
-				self.cur_level += 1
-				print(f"Congratulations! Onto level {self.cur_level}!")
-				self.reset_level()
-			
-			display_grid(self.static_grid, self.dynamic_grid, self.window, TILE_SIZE, self.images)
+			if self.cur_level <= LAST_LEVEL:
+				if self.editor.is_submitted:
+					self.editor.is_submitted = False
+					self.reset_level()
+					self.is_code_running = True
+					self.correspondances = submit(self.player, self.editor.user_code, self.dynamic_grid, self.static_grid, self.exit, self.monsters)
+				
+				if self.is_code_running:
+					if frame_counter % 15 == 0:
+						codeJoueur(self.player, self.correspondances)
+						if frame_counter % 45 == 0:
+							monster_pop(self.dynamic_grid, self.monsters)
+							update_monster_positions(self.dynamic_grid, self.static_grid, self.player.pos[1], self.player.pos[0])
+				
+				if isinstance(self.static_grid[self.player.pos[0]][self.player.pos[1]], Objective):
+					self.is_code_running = False
+					self.cur_level += 1
+					print(f"Congratulations! Onto level {self.cur_level}!")
+					self.reset_level()
+				
+				display_grid(self.static_grid, self.dynamic_grid, self.window, TILE_SIZE, self.images)
+				reset_entities(self.dynamic_grid)
+				
+			else:
+				display_end_screen(self.window, self.images)
 			
 			pygame.display.flip()
-			reset_entities(self.dynamic_grid)
 			frame_counter += 1
 		pygame.quit()
 		self.editor.close()

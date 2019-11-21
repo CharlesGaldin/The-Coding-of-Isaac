@@ -16,7 +16,7 @@ def submit(player, userCode, dynamic_grid, static_grid, exit, monsters):
         "move": lambda direction: move_entity(player, direction, dynamic_grid, static_grid),
         "get_pos_player": lambda: pos(player),
         "get_pos_exit" : lambda: pos(exit),
-        "attack": lambda dir: entity_attack(player, dir, dynamic_grid, monsters)
+        "attack": lambda dir: entity_attack(player, dir, dynamic_grid, monsters),
     }
 	try:
 		exec(userCode, correspondances)

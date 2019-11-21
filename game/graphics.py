@@ -3,6 +3,11 @@ from pygame.locals import *
 
 #pygame.key.set_repeat(400,30)
 
+font = None
+def load_font():
+	global font
+	font = pygame.font.Font(None, 30)
+
 def load_images():
 	"""
 	permet de stocker au début les images dont on aura besoin dans un dictionnaire
@@ -24,6 +29,7 @@ def load_images():
 	images['wall_right'] = pygame.image.load("assets/wall_right.png").convert()
 	images['rock'] = pygame.image.load("assets/rock.png").convert()
 	images['goomba'] = pygame.image.load("assets/goomba.png").convert_alpha()
+	images['end_screen'] = pygame.image.load("assets/end_screen.gif").convert()
 	return images
 
 
@@ -59,6 +65,15 @@ def display_grid(static_grid, dynamic_grid, window, tile_size, images):
 				window.blit(images['ground'], (x,y))
 			display_tile(static_grid[i][j], x, y, window, tile_size, images)
 			display_tile(dynamic_grid[i][j], x, y, window, tile_size, images)
+
+
+# def draw_centered_text(window, text, center_x, center_y):
+# 	text_surf = font.render(text, True, pygame.Color(0xff, 0xff, 0xff))
+# 	text_w, text_h = text_surf.get_size()
+# 	window.blit(text_surf, (center_x-text_w/2, center_y-text_h/2))
+
+def display_end_screen(window, images):
+	window.blit(images['end_screen'], (0, 0))
 
 
 ##ZONE DE TESTS
