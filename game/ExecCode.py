@@ -34,9 +34,9 @@ def codeJoueur(player, correspondances):
 
 def check_import(userCode):
 	if userCode.find('import game') != -1:
-		raise ValueError('unauthorized import')
+		raise ImportError('unauthorized import')
 	if userCode.find('from game') != -1:
-		raise ValueError('unauthorized import')
+		raise ImportError('unauthorized import')
 
 #def entity_attack(entity, dir, dynamic_grid, monsters):
 #    GRID_SIZE = len(dynamic_grid)
