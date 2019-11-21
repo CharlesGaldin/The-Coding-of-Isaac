@@ -1,6 +1,8 @@
 from game.engine import init_grid, GRID_SIZE
 from game.entity import Objective, Obstacle
 
+LAST_LEVEL = 2
+
 def level_grid(level):                   #creation de la grille de jeu du niveau choisi
     if level == 1:
         grid = init_grid()
