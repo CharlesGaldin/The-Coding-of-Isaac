@@ -1,5 +1,5 @@
 from game.engine import init_grid, player_placement, monster_pop, update_monster_positions, move_entity
-from game.levels.level1 import init_grid_lv1
+from game.levels import level_grid
 from game.entity import Moving_Entity
 
 import tkinter as tk
@@ -23,6 +23,7 @@ def reset_entities(dynamic_grid): #protocole de mise à jour des entity.moved de
 
 class Game:
 	def __init__(self):
+		self.cur_level = 1
 		self.reset_level()
 		
 		self.editor = EditorSetUp()
@@ -40,10 +41,11 @@ class Game:
 
 		self.correspondances = None
 		self.is_code_running = False
+		
 	
 	def reset_level(self):
-		self.monsters = []
-		self.static_grid, self.exit = init_grid_lv1()
+    	self.monsters=[]
+		self.static_grid = level_grid(self.cur_level)
 		self.dynamic_grid = init_grid()
 		self.player = player_placement(self.dynamic_grid)
 	
@@ -68,7 +70,7 @@ class Game:
 					running = False
 			
 			if self.is_code_running:
-				if frame_counter % 15 == 0:
+				if frame_counter % 1 == 0:
 					codeJoueur(self.player, self.correspondances)
 					
 					if frame_counter % 30 == 0:
