@@ -75,7 +75,7 @@ class Game:
 						codeJoueur(self.player, self.correspondances)
 						if frame_counter % 45 == 0:
 							monster_pop(self.dynamic_grid, self.monsters)
-							update_monster_positions(self.dynamic_grid, self.static_grid, self.player.pos[1], self.player.pos[0])
+							update_monster_positions(self.dynamic_grid, self.static_grid, self.player)
 							if self.player.is_dead():
 								print("You're dead")
 								self.reset_level()
