@@ -57,14 +57,5 @@ def level_grid(level):                   #creation de la grille de jeu du niveau
             grid[4][i] = Obstacle([4,i], 'rock')
             grid[i][GRID_SIZE-5] = Obstacle([i,GRID_SIZE-5], 'rock')
             grid[GRID_SIZE-5][i] = Obstacle([GRID_SIZE-5,i], 'rock')
-        grid[GRID_SIZE//2-1][4] = None
-        grid[GRID_SIZE//2+1][4] = None
-        grid[GRID_SIZE//2-1][GRID_SIZE-5] = None
-        grid[GRID_SIZE//2+1][GRID_SIZE-5] = None
-        grid[2][GRID_SIZE//2-2] = None
-        grid[2][GRID_SIZE//2+2] = None
-        grid[GRID_SIZE-3][GRID_SIZE//2-2] = None
-        grid[GRID_SIZE-3][GRID_SIZE//2+2] = None
-        
         return grid, grid[GRID_SIZE//2][GRID_SIZE-2]
 
