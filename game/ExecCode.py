@@ -12,7 +12,7 @@ def submit(player, userCode, dynamic_grid, static_grid, exit, monsters):
 			position.append(tuple(i.pos))
 		return position
 			
-	correspondances = {"move" : lambda direction : move_entity(player, direction, dynamic_grid, static_grid), "get_pos_player" : lambda : pos(player), "get_pos_exit" : lambda : pos(exit), "attack" : lambda dir : entitie_attack(player, dir, dynamic_grid)}
+	correspondances = {"move" : lambda direction : move_entity(player, direction, dynamic_grid, static_grid), "get_pos_player" : lambda : pos(player), "get_pos_exit" : lambda : pos(exit), "attack" : lambda dir : entitie_attack(player, dir, dynamic_grid, monsters)}
 	try:
 		exec(userCode, correspondances)
 	except Exception as e:
@@ -31,7 +31,7 @@ def codeJoueur(player, correspondances):
 #   -Fonction pour obtenir la position des ennemis
 #   -Fonction pour obtenir la position de la sortie
 
-def entitie_attack(entitie, dir, dynamic_grid):
+def entitie_attack(entitie, dir, dynamic_grid,monsters):
     GRID_SIZE = len(dynamic_grid)
     position = entitie.pos.copy()
     fireMove = {"up": [-1,0], "down": [1,0], "left": [0,-1], "right": [0,1]}
@@ -43,4 +43,4 @@ def entitie_attack(entitie, dir, dynamic_grid):
         if dynamic_grid[position[0]][position[1]] != None:
             dynamic_grid[position[0]][position[1]].health_change(-entitie.attack)
             if dynamic_grid[position[0]][position[1]].health <= 0:
-                dynamic_grid[position[0]][position[1]].__del__()
+                dynamic_grid[position[0]][position[1]].__del__(monsters, dynamic_grid)
