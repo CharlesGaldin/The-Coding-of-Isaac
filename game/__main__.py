@@ -12,20 +12,22 @@ from game.graphics import get_window_size, create_window, load_images, display_m
 
 from game.ExecCode import codeJoueur, submit
 
+TILE_SIZE = 32
+
 class Game:
 	def __init__(self):
 		self.reset_level()
 		
 		self.editor = EditorSetUp()
 		
-		win_w, win_h = get_window_size(self.static_grid, 30)
+		win_w, win_h = get_window_size(self.static_grid, TILE_SIZE)
 		self.pygame_frame = tk.Frame(self.editor.master, width = win_w, height = win_h)
 		self.pygame_frame.pack(side = tk.LEFT)
 		
 		os.environ['SDL_WINDOWID'] = str(self.pygame_frame.winfo_id())
 		if platform.system == "Windows":
 			os.environ['SDL_VIDEODRIVER'] = 'windib'
-		self.window = create_window(self.static_grid, 30)
+		self.window = create_window(self.static_grid, TILE_SIZE)
 		
 		self.images = load_images()
 
@@ -64,8 +66,8 @@ class Game:
 					if frame_counter % 240 == 0:
 						monster_pop(self.dynamic_grid)
 			
-			display_map(self.static_grid, self.window, 30, self.images, True)
-			display_map(self.dynamic_grid, self.window, 30, self.images, False)
+			display_map(self.static_grid, self.window, TILE_SIZE, self.images, True)
+			display_map(self.dynamic_grid, self.window, TILE_SIZE, self.images, False)
 			
 			pygame.display.flip()
 			frame_counter += 1

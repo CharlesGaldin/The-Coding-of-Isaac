@@ -48,10 +48,13 @@ def display_map(grid,window,tile_size,images,ground_where_empty):
 	width = len(grid[0])
 	for i in range(height):
 		for j in range(width):
+			x, y = j*tile_size, i*tile_size
 			if grid[i][j] != None:
-				window.blit(images[grid[i][j].artwork],(j*tile_size,i*tile_size))
+				if grid[i][j].tall_artwork:
+					y -= tile_size
+				window.blit(images[grid[i][j].artwork], (x,y))
 			elif ground_where_empty:
-				window.blit(images['ground'],(j*tile_size,i*tile_size))
+				window.blit(images['ground'], (x,y))
 
 
 ##ZONE DE TESTS
