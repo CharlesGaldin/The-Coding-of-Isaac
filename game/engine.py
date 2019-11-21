@@ -1,6 +1,5 @@
-from game.entity import Player, Monster
+from game.entity import Player, Monster , Obstacle , Objective
 import random
-from game.entity import Obstacle, Objective
 
 GRID_SIZE = 15
 
@@ -86,12 +85,37 @@ def monster_pop(dynamic_grid,monsters):
 	dynamic_grid[y][x] = new_monster
 	monsters.append(new_monster)
 	
-def update_monster_positions(dynamic_grid,static_grid,x_player,y_player):
-		#dynamic_grid_copy = [[cell for cell in row] for row in dynamic_grid]
+def update_monster_positions(dynamic_grid,static_grid,player):
+    	#dynamic_grid_copy = [[cell for cell in row] for row in dynamic_grid]
 	for i in range(GRID_SIZE):
 		for j in range(GRID_SIZE):
 			case = dynamic_grid[i][j]
-			if case != None and case.artwork == 'goomba' :#and not case.moved:
-				case.move_towards_player(x_player,y_player,dynamic_grid,static_grid)
+			if case != None and case.artwork == 'goomba':
+				case.move_towards_player(player.pos[1],player.pos[0],dynamic_grid,static_grid)
+				case.attack_player(player)
 	#dynamic_grid = [[cell for cell in row] for row in dynamic_grid_copy]
+
+
+    
 		
+def entity_attack(entity, dir, dynamic_grid, monsters):
+	GRID_SIZE = len(dynamic_grid)
+	position = entity.pos.copy()
+	fireMove = {"up": [-1,0], "down": [1,0], "left": [0,-1], "right": [0,1]}
+	if entity.attacked == True:    #vérification que le joueur n'a pas déjà attaqué ce tour là
+		if dir in fireMove:
+			for i in range(entity.range):
+				position[0] += fireMove[dir][0]
+				position[1] += fireMove[dir][1]
+				if position[0] >= GRID_SIZE or position[0] < 0 or position[1] >= GRID_SIZE or position[1] < 0:
+					break
+				if dynamic_grid[position[0]][position[1]] != None:
+					dynamic_grid[position[0]][position[1]].health_change(-entity.attack)
+					if dynamic_grid[position[0]][position[1]].health <= 0:
+						dynamic_grid[position[0]][position[1]].kill(monsters, dynamic_grid)
+			entity.attacked = False
+		else:
+			raise NameError('Attribute not recogized, please choose between "right", "left", "up" and "down"')
+	else:
+		if isinstance(entity, Player):
+			print('You already attacked this turn')	

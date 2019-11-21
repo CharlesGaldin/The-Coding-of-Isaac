@@ -16,6 +16,7 @@ class Moving_Entity(Entity):
 		super().__init__(position, artwork, tall_artwork)
 		self.health = health
 		self.moved = True
+		self.attaked = True
 		self.attack = attack
 		self.range = fire_range
 	
@@ -31,10 +32,14 @@ class Player(Moving_Entity):
 	def __init__(self , position , health = 10 , attack = 2 , fire_range = 5):
 		super().__init__(position , health , attack , fire_range , "robot", tall_artwork = True)
 
-class Monster(Moving_Entity):
+	def is_dead(self):
+		return self.health <= 0
 
+class Monster(Moving_Entity):
+    
 	def __init__(self , position , health , attack , artwork , fire_range = 1 ):
 		super().__init__(position ,  health , attack , fire_range , artwork )
+		
 	def kill(self, monstersList, dynamic_grid):
 		i = 0
 		while i < len(monstersList):
@@ -55,6 +60,15 @@ class Monster(Moving_Entity):
 				game.engine.move_entity(self,'up',dynamic_grid,static_grid)
 			elif self.pos[0] < y_player:
 				game.engine.move_entity(self,'down',dynamic_grid,static_grid)
+
+	def attack_player(self,player):
+		if (self.pos[0] == player.pos[0] and abs(self.pos[1]-player.pos[1]) == 1) or (self.pos[1] == player.pos[1] and abs(self.pos[0]-player.pos[0])==1):
+			player.health-=1
+			print("Vie :",player.health)
+    	
+	
+	
+    	
 
 class Unmoving_Entity(Entity):
 	def __init__(self , position , artwork, tall_artwork = False):
