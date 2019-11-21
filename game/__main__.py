@@ -24,7 +24,7 @@ def reset_entities(dynamic_grid): #protocole de mise à jour des entity.moved de
 
 class Game:
 	def __init__(self):
-		self.cur_level = 2
+		self.cur_level = 1
 		self.reset_level()
 		
 		self.editor = EditorSetUp()
