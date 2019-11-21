@@ -14,7 +14,7 @@ from game.ExecCode import codeJoueur, submit
 
 class Game:
 	def __init__(self):
-		self.static_grid = init_grid_lv1()
+		self.static_grid, self.exit = init_grid_lv1()
 		self.dynamic_grid = init_grid()
 		self.player = player_placement(self.dynamic_grid)
 		
@@ -51,7 +51,7 @@ class Game:
 			if frame_counter % 15 == 0:
 				if self.editor.isSubmitted and not isCompiled:
 					isCompiled = True
-					self.correspondances = submit(self.player, self.editor.userCode, self.dynamic_grid)
+					self.correspondances = submit(self.player, self.editor.userCode, self.dynamic_grid, self.static_grid, self.exit)
 				
 				if self.editor.isSubmitted and isCompiled:
 					codeJoueur(self.player, self.correspondances)
