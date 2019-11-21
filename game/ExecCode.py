@@ -4,7 +4,7 @@ def submit(player, userCode, dynamic_grid, static_grid):
     def pos() :
         p = player.pos()
         return tuple(p)
-    correspondances = {"move" : lambda direction : move_entity(player, direction, dynamic_grid, static_grid), "getPos" : lambda : pos}
+    correspondances = {"move" : lambda direction : move_entity(player, direction, dynamic_grid, static_grid), "getPos" : lambda : tuple(player.pos)}
     try:
     	exec(userCode, correspondances)
     except Exception as e:

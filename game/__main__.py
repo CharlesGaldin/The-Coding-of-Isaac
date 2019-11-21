@@ -1,5 +1,5 @@
 from game.engine import init_grid, player_placement, monster_pop
-from game.level1 import init_grid_lv1
+from game.Levels.level1 import init_grid_lv1
 from game.entity import Moving_Entity
 
 import tkinter as tk
