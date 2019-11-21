@@ -34,4 +34,6 @@ def entitie_attack(entitie, dir, dynamic_grid):
             break
         if dynamic_grid[position[0]][position[1]] != None:
             dynamic_grid[position[0]][position[1]].health_change(-entitie.attack)
+            if dynamic_grid[position[0]][position[1]].health <= 0:
+                dynamic_grid[position[0]][position[1]].__del__()
        
