@@ -17,8 +17,8 @@ TILE_SIZE = 32
 
 def reset_entities(dynamic_grid): #protocole de mise à jour des entity.moved de toutes les entités ayant fait leur tour
 	for row in dynamic_grid:
-    		for cell in row:
-    			if cell != None:
+		for cell in row:
+			if cell != None:
 				cell.moved = True
 				cell.attacked = True
 
