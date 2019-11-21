@@ -45,10 +45,16 @@ def create_window(grid,tile_size):
 	return screen
 
 
-def display_tile(tile, x, y, window, tile_size, images):
-	if tile != None:
+def display_tile(tile, x, y, window, tile_size, images, turn_fraction, dynamic):
+	if tile == None:
+		if not dynamic:
+			window.blit(images['ground'], (x,y))
+	else:
 		if tile.tall_artwork:
 			y -= tile_size
+		if dynamic and tile.last_movement != None:
+			x -= tile.last_movement[1] * tile_size * (1 - turn_fraction)
+			y -= tile.last_movement[0] * tile_size * (1 - turn_fraction)
 		window.blit(images[tile.artwork], (x,y))
 
 def display_grid(static_grid, dynamic_grid, window, tile_size, images, turn_fraction):
@@ -60,11 +66,10 @@ def display_grid(static_grid, dynamic_grid, window, tile_size, images, turn_frac
 	width = len(static_grid[0])
 	for i in range(height):
 		for j in range(width):
-			x, y = j*tile_size, i*tile_size
-			if static_grid[i][j] == None:
-				window.blit(images['ground'], (x,y))
-			display_tile(static_grid[i][j], x, y, window, tile_size, images)
-			display_tile(dynamic_grid[i][j], x, y, window, tile_size, images)
+			display_tile(static_grid[i][j], j*tile_size, i*tile_size, window, tile_size, images, turn_fraction, False)
+	for i in range(height):
+		for j in range(width):
+			display_tile(dynamic_grid[i][j], j*tile_size, i*tile_size, window, tile_size, images, turn_fraction, True)
 
 
 # def draw_centered_text(window, text, center_x, center_y):

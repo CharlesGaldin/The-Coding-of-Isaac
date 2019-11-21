@@ -75,6 +75,14 @@ class Game:
 				
 				if self.is_code_running:
 					if self.frame_counter % self.turn_frames == 0:
+						reset_entities(self.dynamic_grid)
+						
+						if isinstance(self.static_grid[self.player.pos[0]][self.player.pos[1]], Objective):
+							self.cur_level += 1
+							print(f"Congratulations! Onto level {self.cur_level}!")
+							self.reset_level()
+							self.is_code_running = False
+						
 						codeJoueur(self.player, self.correspondances)
 						if self.frame_counter % (3*self.turn_frames) == 0:
 							monster_pop(self.dynamic_grid, self.monsters)
@@ -84,15 +92,8 @@ class Game:
 								self.reset_level()
 								self.is_code_running = False
 				
-				if isinstance(self.static_grid[self.player.pos[0]][self.player.pos[1]], Objective):
-					self.cur_level += 1
-					print(f"Congratulations! Onto level {self.cur_level}!")
-					self.reset_level()
-					self.is_code_running = False
-				
 				turn_fraction = (self.frame_counter % self.turn_frames) / self.turn_frames
 				display_grid(self.static_grid, self.dynamic_grid, self.window, TILE_SIZE, self.images, turn_fraction)
-				reset_entities(self.dynamic_grid)
 				
 			else:
 				display_end_screen(self.window, self.images)
