@@ -14,7 +14,7 @@ from game.graphics import get_window_size, create_window, load_images, load_font
 from game.ExecCode import codeJoueur, submit
 
 TILE_SIZE = 32
-pop = True
+pop = False
 
 def reset_entities(dynamic_grid): #protocole de mise à jour des entity.moved de toutes les entités ayant fait leur tour
 	for row in dynamic_grid:
