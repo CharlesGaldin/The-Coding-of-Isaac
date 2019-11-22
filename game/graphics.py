@@ -90,7 +90,10 @@ def display_grid(static_grid, dynamic_grid, window, tile_size, images, turn_frac
 # 	window.blit(text_surf, (center_x-text_w/2, center_y-text_h/2))
 
 def display_end_screen(window, images):
-	window.blit(images['end_screen'], (0, 0))
+	win_w, win_h = window.get_size()
+	im_w, im_h = images['end_screen'].get_size()
+	window.fill(pygame.Color(0x00, 0x5D, 0xFF))
+	window.blit(images['end_screen'], ((win_w-im_w)/2, (win_h-im_h)/2))
 
 
 ##ZONE DE TESTS

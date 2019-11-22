@@ -1,0 +1,53 @@
+
+# Level 1 solution
+
+phase = 1
+
+def move_and_kill(dir):
+	move(dir)
+	attack(dir)
+
+def turn(grid):
+	global phase
+	move_and_kill("right" if phase == 1 else "down")
+	if get_pos_player()[0] == 18:
+		phase = 2
+
+
+
+# Level 2 solution
+
+moves = ["up"]*8 + ["right"]*8 + ["down"]*8
+
+step = 0
+
+def move_and_kill(dir):
+	move(dir)
+	attack(dir)
+
+def turn(grid):
+	global step
+	old_pos = get_pos_player()
+	move_and_kill(moves[step])
+	if old_pos != get_pos_player():
+		step += 1
+
+
+
+# Level 3 solution
+
+moves = ["left"]*5 + ["up"] + ["left"]*2 + ["up"]*6 + ["right"]*5 + ["up"]*2 + ["left"]*7 + ["down"]*9
+
+step = 0
+
+def move_and_kill(dir):
+	move(dir)
+	attack(dir)
+
+def turn(grid):
+	global step
+	old_pos = get_pos_player()
+	move_and_kill(moves[step])
+	if old_pos != get_pos_player():
+		step += 1
+
