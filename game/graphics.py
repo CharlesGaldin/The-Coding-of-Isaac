@@ -34,6 +34,8 @@ def load_images():
 	images['end_screen'] = pygame.image.load("assets/end_screen.gif").convert()
 	images['robot_hurt'] = pygame.image.load("assets/robot_hurt.png").convert_alpha()
 	images['health_bar'] = pygame.image.load("assets/health_bar.png").convert()
+	images['robot_attack1'] = pygame.image.load("assets/robot_attack1.png").convert_alpha()
+	images['robot_attack2'] = pygame.image.load("assets/robot_attack2.png").convert_alpha()
 	return images
 
 

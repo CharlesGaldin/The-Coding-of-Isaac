@@ -85,7 +85,7 @@ def entity_attack(entity, dir, dynamic_grid, monsters):
 						dynamic_grid[position[0]][position[1]].kill(monsters, dynamic_grid)
 			entity.attacked = True
 		else:
-			raise NameError('Attribute not recogized, please choose between "right", "left", "up" and "down"')
+			raise NameError('Attribute not recognized, please choose between "right", "left", "up" and "down"')
 	else:
 		if isinstance(entity, Player):
 			print('You already attacked this turn')	

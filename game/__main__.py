@@ -48,6 +48,7 @@ class Game:
 		
 		self.turn_frames = 15
 		self.hurt_frames = 10
+		self.attack_frames = 10
 		
 	
 	def reset_level(self):
@@ -81,6 +82,7 @@ class Game:
 				if self.is_code_running:
 					if self.frame_counter % self.turn_frames == 0:
 						reset_entities(self.dynamic_grid)
+						self.player.hurt = False
 						
 						if isinstance(self.static_grid[self.player.pos[0]][self.player.pos[1]], Objective):
 							self.cur_level += 1
@@ -98,9 +100,14 @@ class Game:
 									print("You're dead")
 									self.reset_level()
 									self.is_code_running = False
-						
-					if self.player.hurt and self.frame_counter % self.turn_frames == self.hurt_frames:
-						self.player.hurt = False
+					
+					if self.player.attacked and self.frame_counter % self.turn_frames <= self.attack_frames/2:
+						self.player.artwork = 'robot_attack1'
+					elif self.player.hurt and self.frame_counter % self.turn_frames <= self.hurt_frames:
+						self.player.artwork = 'robot_hurt'
+					elif self.player.attacked and self.frame_counter % self.turn_frames <= self.attack_frames:
+						self.player.artwork = 'robot_attack2'
+					else:
 						self.player.artwork = 'robot'
 					
 					turn_fraction = (self.frame_counter % self.turn_frames) / self.turn_frames
