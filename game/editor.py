@@ -20,7 +20,10 @@ def turn(grid):
 	#--- add your code...
 
 #Available functions: move('*'), attack('*'), get_pos_player(), get_pos_exit(), get_pos_monster() where '*' can be :    'up', 'down', 'left' or 'right'.
-#grid gives you the layout of the level""")
+#grid gives you the layout of the level
+# 
+# The code outside turn will be executed once so you can setup some variable
+# turn will be executed every turn""")
 		self.text.pack()
 		
 		self.close_button = tk.Button(self.editor, text="Submit", command=self.submit)
