@@ -33,9 +33,9 @@ def level_grid(level, monster_list):                   #creation de la grille de
         grid = init_grid()
         dynamic_grid = init_grid()
         dynamic_grid[GRID_SIZE//2 + 1][1] = Monster([GRID_SIZE//2 + 1, 1], 1, 1, 'slime')
-        dynamic_grid[GRID_SIZE//2 - 1][1] = Monster([GRID_SIZE//2 - 1, 1], 1, 1, 'slime')
+        dynamic_grid[GRID_SIZE//2 - 2][1] = Monster([GRID_SIZE//2 - 2, 1], 1, 1, 'slime')
         monster_list.append(dynamic_grid[GRID_SIZE//2 + 1][1])
-        monster_list.append(dynamic_grid[GRID_SIZE//2 - 1][1])
+        monster_list.append(dynamic_grid[GRID_SIZE//2 - 2][1])
         place_walls(grid)
         grid[GRID_SIZE//2][1] = Objective([GRID_SIZE//2, 1], 'door')
         for i in range(2,GRID_SIZE-2):
