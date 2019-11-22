@@ -42,19 +42,20 @@ def move_entity(entity, direction, dynamic_grid, static_grid):
 		print('You already moved this turn')
 
 def monster_pop(dynamic_grid, monsters, pop):
-    	cote = random.randint(0,3)
-	case = random.randint(1,GRID_SIZE-2)
-	if cote == 0: #haut
-		x,y = case,0
-	elif cote == 1: #bas
-		x,y = case,GRID_SIZE-1
-	elif cote == 2: #gauche
-		x,y = 0,case
-	elif cote == 3: #droite
-		x,y = GRID_SIZE-1,case
-	new_monster = Monster([y,x],1,1,'goomba')
-	dynamic_grid[y][x] = new_monster
-	monsters.append(new_monster)
+	if pop:
+		cote = random.randint(0,3)
+		case = random.randint(1,GRID_SIZE-2)
+		if cote == 0: #haut
+			x,y = case,0
+		elif cote == 1: #bas
+			x,y = case,GRID_SIZE-1
+		elif cote == 2: #gauche
+			x,y = 0,case
+		elif cote == 3: #droite
+			x,y = GRID_SIZE-1,case
+		new_monster = Monster([y,x],1,1,'goomba')
+		dynamic_grid[y][x] = new_monster
+		monsters.append(new_monster)
 
 def update_monster_positions(dynamic_grid,static_grid,player):
 		#dynamic_grid_copy = [[cell for cell in row] for row in dynamic_grid]

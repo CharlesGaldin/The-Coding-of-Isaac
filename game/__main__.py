@@ -14,6 +14,7 @@ from game.graphics import get_window_size, create_window, load_images, load_font
 from game.ExecCode import codeJoueur, submit
 
 TILE_SIZE = 32
+pop = False
 
 def reset_entities(dynamic_grid): #protocole de mise à jour des entity.moved de toutes les entités ayant fait leur tour
 	for row in dynamic_grid:
@@ -94,7 +95,7 @@ class Game:
 							codeJoueur(self.player, self.correspondances, self.static_grid)
 							
 							if self.frame_counter % (3*self.turn_frames) == 0:
-								monster_pop(self.dynamic_grid, self.monsters)
+								monster_pop(self.dynamic_grid, self.monsters, pop)
 								update_monster_positions(self.dynamic_grid, self.static_grid, self.player)
 								if self.player.is_dead():
 									print("You're dead")
