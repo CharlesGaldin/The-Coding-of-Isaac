@@ -111,7 +111,11 @@ class Game:
 							
 						else:
 							# Run the user's code
-							codeJoueur(self.player, self.correspondances, self.static_grid)
+							try:
+								codeJoueur(self.player, self.correspondances, self.static_grid)
+							except Exception as e:
+								self.editor.error_box(str(e))
+								self.is_code_running = False
 							
 							# Every three turns, update monsters
 							if self.frame_counter % (3*self.turn_frames) == 0:
