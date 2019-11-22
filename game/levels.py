@@ -1,4 +1,4 @@
-from game.engine import init_grid, GRID_SIZE
+from game.engine import init_grid, GRID_SIZE, player_placement
 from game.entity import Objective, Obstacle, Monster
 
 LAST_LEVEL = 3
@@ -20,7 +20,7 @@ def level_grid(level, monster_list):                   #creation de la grille de
         dynamic_grid = init_grid()
         place_walls(grid)
         grid[GRID_SIZE-2][GRID_SIZE-2] = Objective([GRID_SIZE-2, GRID_SIZE-2], 'door')
-        return grid, dynamic_grid, grid[GRID_SIZE-2][GRID_SIZE-2]
+        return grid, dynamic_grid, grid[GRID_SIZE-2][GRID_SIZE-2], [GRID_SIZE//2, GRID_SIZE//2]
     elif level == 2:
         grid = init_grid()
         dynamic_grid = init_grid()
@@ -28,14 +28,14 @@ def level_grid(level, monster_list):                   #creation de la grille de
         grid[GRID_SIZE//2][GRID_SIZE-2] = Objective([GRID_SIZE//2, GRID_SIZE-2], 'door')
         for i in range(3,GRID_SIZE-3):
             grid[i][GRID_SIZE//2 + 2] = Obstacle([i, GRID_SIZE//2 + 2], 'rock')
-        return grid, dynamic_grid, grid[GRID_SIZE//2][GRID_SIZE-2]
+        return grid, dynamic_grid, grid[GRID_SIZE//2][GRID_SIZE-2], [GRID_SIZE//2, GRID_SIZE//2]
     elif level == 3:
         grid = init_grid()
         dynamic_grid = init_grid()
         dynamic_grid[GRID_SIZE//2 + 1][1] = Monster([GRID_SIZE//2 + 1, 1], 1, 1, 'slime')
-        dynamic_grid[GRID_SIZE//2 - 1][1] = Monster([GRID_SIZE//2 - 1, 1], 1, 1, 'slime')
+        dynamic_grid[GRID_SIZE//2 - 2][1] = Monster([GRID_SIZE//2 - 2, 1], 1, 1, 'slime')
         monster_list.append(dynamic_grid[GRID_SIZE//2 + 1][1])
-        monster_list.append(dynamic_grid[GRID_SIZE//2 - 1][1])
+        monster_list.append(dynamic_grid[GRID_SIZE//2 - 2][1])
         place_walls(grid)
         grid[GRID_SIZE//2][1] = Objective([GRID_SIZE//2, 1], 'door')
         for i in range(2,GRID_SIZE-2):
@@ -56,7 +56,7 @@ def level_grid(level, monster_list):                   #creation de la grille de
         grid[2][GRID_SIZE//2+2] = None
         grid[GRID_SIZE-3][GRID_SIZE//2-2] = None
         grid[GRID_SIZE-3][GRID_SIZE//2+2] = None
-        return grid, dynamic_grid, grid[GRID_SIZE//2][1]
+        return grid, dynamic_grid, grid[GRID_SIZE//2][1], [GRID_SIZE//2, GRID_SIZE//2]
     elif level == 4:
         grid = init_grid()
         dynamic_grid = init_grid()
