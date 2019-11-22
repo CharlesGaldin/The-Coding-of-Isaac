@@ -67,7 +67,6 @@ class Monster(Moving_Entity):
 		if (self.pos[0] == player.pos[0] and abs(self.pos[1]-player.pos[1]) == 1) or (self.pos[1] == player.pos[1] and abs(self.pos[0]-player.pos[0])==1):
 			player.health_change(-self.attack)
 			player.hurt = True
-			player.artwork = 'robot_hurt'
 			print("Vie : ",player.health)
     	
 	
