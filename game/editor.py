@@ -19,7 +19,8 @@ class EditorSetUp:
 def turn(grid):
 	#--- add your code...
 
-#Available functions: move('*'), attack('*') and  getPos() where '*' can be :    'up', 'down', 'left' or 'right'.""")
+#Available functions: move('*'), attack('*'), get_pos_player(), get_pos_exit(), get_pos_monster() where '*' can be :    'up', 'down', 'left' or 'right'.
+#grid gives you the layout of the level""")
 		self.text.pack()
 		
 		self.close_button = tk.Button(self.editor, text="Submit", command=self.submit)
