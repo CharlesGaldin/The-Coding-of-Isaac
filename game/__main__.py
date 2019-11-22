@@ -1,4 +1,4 @@
-from game.engine import init_grid, player_placement, monster_pop, update_monster_positions, move_entity
+from game.engine import init_grid, monster_pop, update_monster_positions, move_entity, player_placement
 from game.levels import level_grid, LAST_LEVEL
 from game.entity import Objective
 
@@ -14,7 +14,7 @@ from game.graphics import get_window_size, create_window, load_images, load_font
 from game.ExecCode import codeJoueur, submit
 
 TILE_SIZE = 32
-pop = False
+pop = True
 
 def reset_entities(dynamic_grid): #protocole de mise à jour des entity.moved de toutes les entités ayant fait leur tour
 	for row in dynamic_grid:
@@ -55,9 +55,8 @@ class Game:
 	def reset_level(self):
 		if self.cur_level > LAST_LEVEL: return
 		self.monsters=[]
-		self.static_grid, self.dynamic_grid, self.exit = level_grid(self.cur_level)
-		self.dynamic_grid = init_grid()
-		self.player = player_placement(self.dynamic_grid)
+		self.static_grid, self.dynamic_grid, self.exit, player_pos= level_grid(self.cur_level, self.monsters)
+		self.player = player_placement(self.dynamic_grid, player_pos[0], player_pos[1])
 		self.frame_counter = 0
 	
 	def run(self):

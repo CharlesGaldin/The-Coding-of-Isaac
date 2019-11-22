@@ -6,10 +6,9 @@ GRID_SIZE = 15
 def init_grid(): #renvoie une grille carrée de taille GRID_SIZE*GRID_SIZE remplie de None
 	return [[None for i in range(GRID_SIZE)] for j in range(GRID_SIZE)]
 
-def player_placement(dynamic_grid): #place le joueur au début de la partie
-	p=GRID_SIZE//2
-	dynamic_grid[p][p] = Player([p , p]) #joueur placé au milieu de la grille
-	return dynamic_grid[p][p]
+def player_placement(dynamic_grid, y, x): #place le joueur au début de la partie
+	dynamic_grid[y][x] = Player([y , x])
+	return dynamic_grid[y][x]
 
 def update(dynamic_grid):  #ne fait rien et ne sert a rien pour l'instant, à développer
 	pass
@@ -53,7 +52,7 @@ def monster_pop(dynamic_grid, monsters, pop):
 			x,y = 0,case
 		elif cote == 3: #droite
 			x,y = GRID_SIZE-1,case
-		new_monster = Monster([y,x],1,1,'goomba')
+		new_monster = Monster([y,x],1,1,'slime')
 		dynamic_grid[y][x] = new_monster
 		monsters.append(new_monster)
 
@@ -62,7 +61,7 @@ def update_monster_positions(dynamic_grid,static_grid,player):
 	for i in range(GRID_SIZE):
 		for j in range(GRID_SIZE):
 			case = dynamic_grid[i][j]
-			if case != None and case.artwork == 'goomba':
+			if case != None and case.artwork == 'slime':
 				case.move_towards_player(player.pos[1],player.pos[0],dynamic_grid,static_grid)
 				case.attack_player(player)
 	#dynamic_grid = [[cell for cell in row] for row in dynamic_grid_copy]
