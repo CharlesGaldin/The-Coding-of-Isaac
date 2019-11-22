@@ -30,7 +30,7 @@ class Moving_Entity(Entity):
 
 class Player(Moving_Entity):
 
-	def __init__(self , position , health = 10 , attack = 2 , fire_range = 5):
+	def __init__(self , position , health = 10 , attack = 2 , fire_range = 3):
 		super().__init__(position , health , attack , fire_range , "robot", tall_artwork = True)
 		self.hurt = False
 
