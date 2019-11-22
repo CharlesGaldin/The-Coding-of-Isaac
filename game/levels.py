@@ -14,24 +14,23 @@ def place_walls(grid):
     for i in range(1,GRID_SIZE-1):
         grid[i][0] = Obstacle([i,0], 'wall_left')
         grid[i][GRID_SIZE-1] = Obstacle([i,GRID_SIZE-1], 'wall_right')
-    return grid
 
 def level_grid(level):                   #creation de la grille de jeu du niveau choisi
     if level == 1:
         grid = init_grid()
-        grid = place_walls(grid)
+        place_walls(grid)
         grid[GRID_SIZE-2][GRID_SIZE-2] = Objective([GRID_SIZE-2, GRID_SIZE-2], 'door')
         return grid, grid[GRID_SIZE-2][GRID_SIZE-2]
     elif level == 2:
         grid = init_grid()
-        grid = place_walls(grid)
+        place_walls(grid)
         grid[GRID_SIZE//2][GRID_SIZE-2] = Objective([GRID_SIZE//2, GRID_SIZE-2], 'door')
         for i in range(3,GRID_SIZE-3):
             grid[i][GRID_SIZE//2 + 2] = Obstacle([i, GRID_SIZE//2 + 2], 'rock')
         return grid, grid[GRID_SIZE//2][GRID_SIZE-2]
     elif level == 3:
         grid = init_grid()
-        grid = place_walls(grid)
+        place_walls(grid)
         grid[GRID_SIZE//2][1] = Objective([GRID_SIZE//2, 1], 'door')
         for i in range(2,GRID_SIZE-2):
             grid[i][2] = Obstacle([i,2], 'rock')
