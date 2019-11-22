@@ -14,7 +14,7 @@ def place_walls(grid):
         grid[i][0] = Obstacle([i,0], 'wall_left')
         grid[i][GRID_SIZE-1] = Obstacle([i,GRID_SIZE-1], 'wall_right')
 
-def level_grid(level):                   #creation de la grille de jeu du niveau choisi
+def level_grid(level, monster_list):                   #creation de la grille de jeu du niveau choisi
     if level == 1:
         grid = init_grid()
         dynamic_grid = init_grid()
@@ -32,6 +32,10 @@ def level_grid(level):                   #creation de la grille de jeu du niveau
     elif level == 3:
         grid = init_grid()
         dynamic_grid = init_grid()
+        dynamic_grid[GRID_SIZE//2 + 1][1] = Monster([GRID_SIZE//2 + 1, 1], 1, 1, 'slime')
+        dynamic_grid[GRID_SIZE//2 - 1][1] = Monster([GRID_SIZE//2 - 1, 1], 1, 1, 'slime')
+        monster_list.append(dynamic_grid[GRID_SIZE//2 + 1][1])
+        monster_list.append(dynamic_grid[GRID_SIZE//2 - 1][1])
         place_walls(grid)
         grid[GRID_SIZE//2][1] = Objective([GRID_SIZE//2, 1], 'door')
         for i in range(2,GRID_SIZE-2):
