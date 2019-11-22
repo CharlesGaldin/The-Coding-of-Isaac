@@ -1,5 +1,5 @@
 from game.engine import init_grid, GRID_SIZE
-from game.entity import Objective, Obstacle
+from game.entity import Objective, Obstacle, Monster
 
 LAST_LEVEL = 3
 
@@ -19,18 +19,21 @@ def place_walls(grid):
 def level_grid(level):                   #creation de la grille de jeu du niveau choisi
     if level == 1:
         grid = init_grid()
+        dynamic_grid = init_grid()
         grid = place_walls(grid)
         grid[GRID_SIZE-2][GRID_SIZE-2] = Objective([GRID_SIZE-2, GRID_SIZE-2], 'door')
-        return grid, grid[GRID_SIZE-2][GRID_SIZE-2]
+        return grid, dynamic_grid, grid[GRID_SIZE-2][GRID_SIZE-2]
     elif level == 2:
         grid = init_grid()
+        dynamic_grid = init_grid()
         grid = place_walls(grid)
         grid[GRID_SIZE//2][GRID_SIZE-2] = Objective([GRID_SIZE//2, GRID_SIZE-2], 'door')
         for i in range(3,GRID_SIZE-3):
             grid[i][GRID_SIZE//2 + 2] = Obstacle([i, GRID_SIZE//2 + 2], 'rock')
-        return grid, grid[GRID_SIZE//2][GRID_SIZE-2]
+        return grid, dynamic_grid, grid[GRID_SIZE//2][GRID_SIZE-2]
     elif level == 3:
         grid = init_grid()
+        dynamic_grid = init_grid()
         grid = place_walls(grid)
         grid[GRID_SIZE//2][1] = Objective([GRID_SIZE//2, 1], 'door')
         for i in range(2,GRID_SIZE-2):
@@ -51,10 +54,12 @@ def level_grid(level):                   #creation de la grille de jeu du niveau
         grid[2][GRID_SIZE//2+2] = None
         grid[GRID_SIZE-3][GRID_SIZE//2-2] = None
         grid[GRID_SIZE-3][GRID_SIZE//2+2] = None
+        return grid, dynamic_grid, grid[GRID_SIZE//2][1]
     elif level == 4:
         grid = init_grid()
+        dynamic_grid = init_grid()
         grid = place_walls(grid)
 
         
-        return grid, grid[GRID_SIZE//2][1]
+        return grid, dynamic_grid, grid[GRID_SIZE//2][1]
 
