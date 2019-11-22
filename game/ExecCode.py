@@ -36,17 +36,3 @@ def check_import(userCode):
 	if userCode.find('from game') != -1:
 		raise ImportError('unauthorized import')
 
-#def entity_attack(entity, dir, dynamic_grid, monsters):
-#    GRID_SIZE = len(dynamic_grid)
-#    position = entity.pos.copy()
-#    fireMove = {"up": [-1,0], "down": [1,0], "left": [0,-1], "right": [0,1]}
-#    for i in range(entity.range):
-#        position[0] += fireMove[dir][0]
-#        position[1] += fireMove[dir][1]
-#        if position[0] >= GRID_SIZE or position[0] < 0 or position[1] >= GRID_SIZE or position[1] < 0:
-#            break
-#        if dynamic_grid[position[0]][position[1]] != None:
-#            dynamic_grid[position[0]][position[1]].health_change(-entity.attack)
-#            if dynamic_grid[position[0]][position[1]].health <= 0:
-#                dynamic_grid[position[0]][position[1]].kill(monsters, dynamic_grid)
-#	entity.attacked = False
