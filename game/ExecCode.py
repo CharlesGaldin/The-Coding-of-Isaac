@@ -18,6 +18,7 @@ def submit(player, userCode, dynamic_grid, static_grid, exit, monsters):
 		"get_pos_player": lambda: pos(player),
 		"get_pos_exit" : lambda: pos(exit),
 		"attack": lambda dir: entity_attack(player, dir, dynamic_grid, monsters),
+		"get_pos_monster" : lambda: pos_monster(monsters)
 	}
 	check_import(userCode)
 	exec(userCode, correspondances)
