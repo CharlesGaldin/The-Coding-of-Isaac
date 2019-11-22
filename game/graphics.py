@@ -1,5 +1,7 @@
 import pygame
 from pygame.locals import *
+from game.engine import GRID_SIZE
+TILE_SIZE = 32
 
 #pygame.key.set_repeat(400,30)
 
@@ -30,6 +32,7 @@ def load_images():
 	images['rock'] = pygame.image.load("assets/rock.png").convert()
 	images['end_screen'] = pygame.image.load("assets/end_screen.gif").convert()
 	images['robot_hurt'] = pygame.image.load("assets/robot_hurt.png").convert_alpha()
+	images['health_bar'] = pygame.image.load("assets/health_bar.png").convert()
 	images['robot_attack1'] = pygame.image.load("assets/robot_attack1.png").convert_alpha()
 	images['robot_attack2'] = pygame.image.load("assets/robot_attack2.png").convert_alpha()
 	images['slime'] = pygame.image.load("assets/slime.png").convert_alpha()
@@ -60,7 +63,7 @@ def display_tile(tile, x, y, window, tile_size, images, turn_fraction, dynamic):
 			y -= tile.last_movement[0] * tile_size * (1 - turn_fraction)
 		window.blit(images[tile.artwork], (x,y))
 
-def display_grid(static_grid, dynamic_grid, window, tile_size, images, turn_fraction):
+def display_grid(static_grid, dynamic_grid, window, tile_size, images, turn_fraction, health):
 	"""
 	images : dico qui contient les images
 	Affiche les deux grilles superposées
@@ -73,6 +76,10 @@ def display_grid(static_grid, dynamic_grid, window, tile_size, images, turn_frac
 	for i in range(height):
 		for j in range(width):
 			display_tile(dynamic_grid[i][j], j*tile_size, i*tile_size, window, tile_size, images, turn_fraction, True)
+	health_bar = images['health_bar']
+	health_bar.set_clip(pygame.Rect(0, 0, int(50*health/10), 6))
+	draw_me = health_bar.subsurface(health_bar.get_clip()) 
+	window.blit(draw_me,(0,GRID_SIZE*TILE_SIZE-5))
 
 
 # def draw_centered_text(window, text, center_x, center_y):
