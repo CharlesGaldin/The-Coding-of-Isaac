@@ -11,7 +11,6 @@ def place_walls(grid):
     for i in range(1,GRID_SIZE-1):
         grid[0][i] = Obstacle([0,i], 'wall_up')
         grid[GRID_SIZE-1][i] = Obstacle([GRID_SIZE-1,i], 'wall_down')
-    for i in range(1,GRID_SIZE-1):
         grid[i][0] = Obstacle([i,0], 'wall_left')
         grid[i][GRID_SIZE-1] = Obstacle([i,GRID_SIZE-1], 'wall_right')
 
