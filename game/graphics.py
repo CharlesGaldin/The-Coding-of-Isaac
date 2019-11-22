@@ -1,5 +1,7 @@
 import pygame
 from pygame.locals import *
+from game.engine import GRID_SIZE
+TILE_SIZE = 32
 
 #pygame.key.set_repeat(400,30)
 
@@ -31,6 +33,7 @@ def load_images():
 	images['goomba'] = pygame.image.load("assets/goomba.png").convert_alpha()
 	images['end_screen'] = pygame.image.load("assets/end_screen.gif").convert()
 	images['robot_hurt'] = pygame.image.load("assets/robot_hurt.png").convert_alpha()
+	images['health_bar'] = pygame.image.load("assets/health_bar.png").convert()
 	return images
 
 
@@ -71,6 +74,7 @@ def display_grid(static_grid, dynamic_grid, window, tile_size, images, turn_frac
 	for i in range(height):
 		for j in range(width):
 			display_tile(dynamic_grid[i][j], j*tile_size, i*tile_size, window, tile_size, images, turn_fraction, True)
+	window.blit(images['health_bar'],(0,GRID_SIZE*TILE_SIZE-5))
 
 
 # def draw_centered_text(window, text, center_x, center_y):
