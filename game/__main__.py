@@ -47,9 +47,7 @@ class Game:
 		self.is_code_running = False
 		
 		self.turn_frames = 15
-
-		self.hurt_time_max = 10
-		self.hurt_time = self.hurt_time_max #temps pendant lequel le robot est blesse
+		self.hurt_frames = 10
 		
 	
 	def reset_level(self):
@@ -79,6 +77,7 @@ class Game:
 					except Exception as e:
 						self.editor.error_box(str(e))
 						self.is_code_running = False
+				
 				if self.is_code_running:
 					if self.frame_counter % self.turn_frames == 0:
 						reset_entities(self.dynamic_grid)
@@ -88,24 +87,26 @@ class Game:
 							print(f"Congratulations! Onto level {self.cur_level}!")
 							self.reset_level()
 							self.is_code_running = False
+							
+						else:
+							codeJoueur(self.player, self.correspondances, self.static_grid)
+							
+							if self.frame_counter % (3*self.turn_frames) == 0:
+								monster_pop(self.dynamic_grid, self.monsters)
+								update_monster_positions(self.dynamic_grid, self.static_grid, self.player)
+								if self.player.is_dead():
+									print("You're dead")
+									self.reset_level()
+									self.is_code_running = False
 						
-						codeJoueur(self.player, self.correspondances, self.static_grid)
-						if self.frame_counter % (3*self.turn_frames) == 0:
-							monster_pop(self.dynamic_grid, self.monsters)
-							update_monster_positions(self.dynamic_grid, self.static_grid, self.player)
-							if self.player.is_dead():
-								print("You're dead")
-								self.reset_level()
-								self.is_code_running = False
-
-					if self.player.hurt:
-						self.hurt_time-=1
-						if self.hurt_time == 0:
-							self.player.hurt = False
-							self.player.artwork = 'robot'
-							self.hurt_time = self.hurt_time_max
+					if self.player.hurt and self.frame_counter % self.turn_frames == self.hurt_frames:
+						self.player.hurt = False
+						self.player.artwork = 'robot'
+					
+					turn_fraction = (self.frame_counter % self.turn_frames) / self.turn_frames
+				else:
+					turn_fraction = 0
 				
-				turn_fraction = (self.frame_counter % self.turn_frames) / self.turn_frames
 				display_grid(self.static_grid, self.dynamic_grid, self.window, TILE_SIZE, self.images, turn_fraction)
 				
 			else:
