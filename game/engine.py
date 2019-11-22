@@ -42,7 +42,7 @@ def move_entity(entity, direction, dynamic_grid, static_grid):
 		print('You already moved this turn')
 
 def monster_pop(dynamic_grid, monsters, pop):
-    	cote = random.randint(0,3)
+	cote = random.randint(0,3)
 	case = random.randint(1,GRID_SIZE-2)
 	if cote == 0: #haut
 		x,y = case,0
