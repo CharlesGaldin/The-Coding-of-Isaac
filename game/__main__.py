@@ -56,9 +56,9 @@ class Game:
 		self.is_code_running = False
 		
 		# Animation duration constants
-		self.turn_frames = 15
-		self.hurt_frames = 10
-		self.attack_frames = 10
+		self.turn_frames = 3
+		self.hurt_frames = 1
+		self.attack_frames = 1
 		
 	
 	# Resets level based on self.cur_level, using levels.py
