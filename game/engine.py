@@ -6,10 +6,9 @@ GRID_SIZE = 15
 def init_grid(): #renvoie une grille carrée de taille GRID_SIZE*GRID_SIZE remplie de None
 	return [[None for i in range(GRID_SIZE)] for j in range(GRID_SIZE)]
 
-def player_placement(dynamic_grid): #place le joueur au début de la partie
-	p=GRID_SIZE//2
-	dynamic_grid[p][p] = Player([p , p]) #joueur placé au milieu de la grille
-	return dynamic_grid[p][p]
+def player_placement(dynamic_grid, y, x): #place le joueur au début de la partie
+	dynamic_grid[y][x] = Player([y , x])
+	return dynamic_grid[y][x]
 
 def update(dynamic_grid):  #ne fait rien et ne sert a rien pour l'instant, à développer
 	pass
