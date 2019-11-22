@@ -1,4 +1,4 @@
-from game.engine import init_grid, player_placement, update_monster_positions, move_entity
+from game.engine import init_grid, player_placement, monster_pop, update_monster_positions, move_entity
 from game.levels import level_grid, LAST_LEVEL
 from game.entity import Objective
 

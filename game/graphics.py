@@ -28,11 +28,11 @@ def load_images():
 	images['wall_left'] = pygame.image.load("assets/wall_left.png").convert()
 	images['wall_right'] = pygame.image.load("assets/wall_right.png").convert()
 	images['rock'] = pygame.image.load("assets/rock.png").convert()
-	images['goomba'] = pygame.image.load("assets/goomba.png").convert_alpha()
 	images['end_screen'] = pygame.image.load("assets/end_screen.gif").convert()
 	images['robot_hurt'] = pygame.image.load("assets/robot_hurt.png").convert_alpha()
 	images['robot_attack1'] = pygame.image.load("assets/robot_attack1.png").convert_alpha()
 	images['robot_attack2'] = pygame.image.load("assets/robot_attack2.png").convert_alpha()
+	images['slime'] = pygame.image.load("assets/slime.png").convert_alpha()
 	return images
 
 
