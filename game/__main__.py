@@ -114,7 +114,7 @@ class Game:
 				else:
 					turn_fraction = 0
 				
-				display_grid(self.static_grid, self.dynamic_grid, self.window, TILE_SIZE, self.images, turn_fraction)
+				display_grid(self.static_grid, self.dynamic_grid, self.window, TILE_SIZE, self.images, turn_fraction, self.player.health)
 				
 			else:
 				display_end_screen(self.window, self.images)

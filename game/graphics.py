@@ -63,7 +63,7 @@ def display_tile(tile, x, y, window, tile_size, images, turn_fraction, dynamic):
 			y -= tile.last_movement[0] * tile_size * (1 - turn_fraction)
 		window.blit(images[tile.artwork], (x,y))
 
-def display_grid(static_grid, dynamic_grid, window, tile_size, images, turn_fraction):
+def display_grid(static_grid, dynamic_grid, window, tile_size, images, turn_fraction, health):
 	"""
 	images : dico qui contient les images
 	Affiche les deux grilles superposées
@@ -76,7 +76,10 @@ def display_grid(static_grid, dynamic_grid, window, tile_size, images, turn_frac
 	for i in range(height):
 		for j in range(width):
 			display_tile(dynamic_grid[i][j], j*tile_size, i*tile_size, window, tile_size, images, turn_fraction, True)
-	window.blit(images['health_bar'],(0,GRID_SIZE*TILE_SIZE-5))
+	health_bar = images['health_bar']
+	health_bar.set_clip(pygame.Rect(0, 0, int(50*health/10), 6))
+	draw_me = health_bar.subsurface(health_bar.get_clip()) 
+	window.blit(draw_me,(0,GRID_SIZE*TILE_SIZE-5))
 
 
 # def draw_centered_text(window, text, center_x, center_y):
