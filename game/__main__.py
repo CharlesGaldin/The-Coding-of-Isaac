@@ -91,7 +91,11 @@ class Game:
 							self.is_code_running = False
 							
 						else:
-							codeJoueur(self.player, self.correspondances, self.static_grid)
+							try:
+								codeJoueur(self.player, self.correspondances, self.static_grid)
+							except Exception as e:
+								self.editor.error_box(str(e))
+								self.is_code_running = False
 							
 							if self.frame_counter % (3*self.turn_frames) == 0:
 								monster_pop(self.dynamic_grid, self.monsters, pop)

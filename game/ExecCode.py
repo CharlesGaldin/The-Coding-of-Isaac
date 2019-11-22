@@ -26,10 +26,7 @@ def submit(player, userCode, dynamic_grid, static_grid, exit, monsters):
 
 
 def codeJoueur(player, correspondances, static_grid):
-	try:
 		correspondances['turn'](deepcopy(static_grid))
-	except Exception as e:
-		print("Error during turn() execution", e)
 
 def check_import(userCode):
 	if userCode.find('import game') != -1:
