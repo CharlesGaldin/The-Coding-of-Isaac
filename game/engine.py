@@ -1,7 +1,7 @@
 from game.entity import Player, Monster , Obstacle , Objective
 import random
 
-GRID_SIZE = 15
+GRID_SIZE = 20
 
 def init_grid(): #renvoie une grille carrée de taille GRID_SIZE*GRID_SIZE remplie de None
 	return [[None for i in range(GRID_SIZE)] for j in range(GRID_SIZE)]
