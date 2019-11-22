@@ -53,7 +53,7 @@ def monster_pop(dynamic_grid, monsters, pop):
 			x,y = 0,case
 		elif cote == 3: #droite
 			x,y = GRID_SIZE-1,case
-		new_monster = Monster([y,x],1,1,'goomba')
+		new_monster = Monster([y,x],1,1,'slime')
 		dynamic_grid[y][x] = new_monster
 		monsters.append(new_monster)
 
@@ -62,7 +62,7 @@ def update_monster_positions(dynamic_grid,static_grid,player):
 	for i in range(GRID_SIZE):
 		for j in range(GRID_SIZE):
 			case = dynamic_grid[i][j]
-			if case != None and case.artwork == 'goomba':
+			if case != None and case.artwork == 'slime':
 				case.move_towards_player(player.pos[1],player.pos[0],dynamic_grid,static_grid)
 				case.attack_player(player)
 	#dynamic_grid = [[cell for cell in row] for row in dynamic_grid_copy]
