@@ -33,6 +33,7 @@ def load_images():
 	images['end_screen'] = pygame.image.load("assets/end_screen.gif").convert()
 	images['robot_hurt'] = pygame.image.load("assets/robot_hurt.png").convert_alpha()
 	images['health_bar'] = pygame.image.load("assets/health_bar.png").convert()
+	images['health_bar_dark'] = pygame.image.load("assets/health_bar_dark.png").convert()
 	images['robot_attack1'] = pygame.image.load("assets/robot_attack1.png").convert_alpha()
 	images['robot_attack2'] = pygame.image.load("assets/robot_attack2.png").convert_alpha()
 	images['slime'] = pygame.image.load("assets/slime.png").convert_alpha()
@@ -76,6 +77,7 @@ def display_grid(static_grid, dynamic_grid, window, tile_size, images, turn_frac
 	for i in range(height):
 		for j in range(width):
 			display_tile(dynamic_grid[i][j], j*tile_size, i*tile_size, window, tile_size, images, turn_fraction, True)
+	window.blit(images['health_bar_dark'], (0,GRID_SIZE*TILE_SIZE-5))
 	health_bar = images['health_bar']
 	health_bar.set_clip(pygame.Rect(0, 0, int(50*health/10), 6))
 	draw_me = health_bar.subsurface(health_bar.get_clip()) 
