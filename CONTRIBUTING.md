@@ -1,4 +1,4 @@
-Anyone can contribute, there is much to do!
+Anyone can contribute, there is much to do! Your help is very much welcomed !
 
 # The Code
 
@@ -27,3 +27,9 @@ Every graphics are dealt with here.
 ## levels
 
 Levels creation fonction
+
+
+# Instruction to help
+
+After forking send a mail to : ulysse.mavrocordatos@student-cs.fr to state the improvement you wish to work on.
+When your done and you have a interesting and working change to code a simple pull request should be enough.
