@@ -32,4 +32,4 @@ Levels creation fonction
 # Instruction to help
 
 After forking send a mail to : ulysse.mavrocordatos@student-cs.fr to state the improvement you wish to work on.
-When your done and you have a interesting and working change to code a simple pull request should be enough.
+When you're done and you have a interesting and working change to code a simple pull request should be enough.
