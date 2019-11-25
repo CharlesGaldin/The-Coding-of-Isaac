@@ -18,7 +18,10 @@ It has been developped in **Python**.
 
 ## How does it work ?
 
-Curently, there is nothing :)
+To launch the game put yourself in the folder: The-Coding-of-Isaac and type 
+'''
+python -m game.__main__
+'''
 
 ## Authors:
 
